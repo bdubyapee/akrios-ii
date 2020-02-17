@@ -59,10 +59,6 @@ async def who(caller, args, **kwargs):
 
     await caller.write("\n\r")
 
-    if not grapevine.LIVE:
-        await caller.write("{BGrapevine network disabled.{x:")
-        return
-
     if len(args) <= 0 and grapevine.other_games_players:
         await caller.write("{BOther realms on the Grapevine network{x:")
         await caller.write("")

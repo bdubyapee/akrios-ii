@@ -44,7 +44,7 @@ from typing import Tuple
 import uuid
 import websockets
 
-from keys import LIVE, CLIENT_ID, SECRET_KEY
+from keys import CLIENT_ID, SECRET_KEY
 import player
 import status
 

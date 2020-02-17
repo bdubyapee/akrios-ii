@@ -52,8 +52,6 @@ class Session(object):
                       'logged in': False}
 
         sessions[self.session] = self
-        log.info(f'Session Instance created: {self.session}')
-        log.info(f'Sessions now: {sessions}')
         asyncio.create_task(self.read(), name=self.session)
         asyncio.create_task(self.send(), name=self.session)
 
@@ -64,8 +62,7 @@ class Session(object):
         asyncio.create_task(frontend.msg_gen_player_login(self.owner.name.capitalize(), self.session))
 
     async def grape_login_successful(self):
-        if grapevine.LIVE:
-            asyncio.create_task(grapevine.msg_gen_player_login(self.owner.name))
+        asyncio.create_task(grapevine.msg_gen_player_login(self.owner.name))
 
     async def handle_close(self):
         await frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session)
@@ -80,7 +77,6 @@ class Session(object):
             await db.database_select_help.put((sessions, self.session, args_))
 
     async def login(self, name=None):
-        log.debug(f'hitting login method of Session : {self.session}')
         if name:
             new_conn = login.Login(name, softboot=True)
         else:
@@ -307,7 +303,6 @@ async def main() -> None:
 
     log.info('After waiting on engine tasks.')
     log.info(f'Completed task is:\n\n{completed}\n\n')
-    log.info(f'All pending tasks are:\n\r{pending}')
 
 
 if __name__ == '__main__':
