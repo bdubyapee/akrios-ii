@@ -27,7 +27,7 @@ async def help(caller, args, **kwargs):
         if ' ' in key:
             key = key.split()[0]
         await caller.sock.query_db('help', key)
-        await caller.sock.send_prompt()
+        await asyncio.sleep(0.1)
     else:
         header = f"{{rHelp Files by Topic{{x"
         await caller.write(f"{header:^80}")
