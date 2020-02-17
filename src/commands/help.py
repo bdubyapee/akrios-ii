@@ -10,6 +10,7 @@
 
 from commands import *
 
+
 name = "help"
 version = 1
 
@@ -23,35 +24,23 @@ requirements = {'capability': ['player'],
 async def help(caller, args, **kwargs):
     key = args.lower()
     if key != '':
-        key = key.split()
-        for onekey in helpsys.helpfiles:
-            if onekey.startswith(key[0]):
-                if helpsys.helpfiles[onekey].viewable.lower() == 'true':
-                    caller.write(helpsys.helpfiles[onekey].description)
-                    return
-        filename = os.path.join(world.logDir, 'missinghelp')
-        with open(filename, 'a') as thefile:
-            thefile.write(f'{time.asctime()}> {key}\n')
-        await caller.write('We do not appear to have a help file for that topic.  We have however logged'
-                           ' the attempt and will look into creating a help file for that topic.')
+        if ' ' in key:
+            key = key.split()[0]
+        await caller.sock.query_db('help', key)
     else:
         header = f"{{rHelp Files by Topic{{x"
         await caller.write(f"{header:^80}")
 
-        retval = []
-        for onehelp in helpsys.helpfiles:
-            if helpsys.helpfiles[onehelp].viewable.lower() == 'true':
-                if helpsys.helpfiles[onehelp].section in caller.capability:
-                    retval.append(onehelp)
+        result = await caller.sock.query_db('help keywords')
 
-        # Create a dict of topics, each has a list value.
+        log.debug(f'HELP RESULT: {result}')
+
         topics = {}
-        # Append each help keywords under the section.
-        for eachhelp in retval:
-            if helpsys.helpfiles[eachhelp].topics in topics:
-                topics[helpsys.helpfiles[eachhelp].topics].append(eachhelp)
+        for keyword, section, topic in result:
+            if topic in topics:
+                topics[topic].append(keyword[0])
             else:
-                topics[helpsys.helpfiles[eachhelp].topics] = [eachhelp]
+                topics[topic] = keyword
 
         topics_sorted = list(topics)
         topics_sorted.sort()

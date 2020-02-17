@@ -18,20 +18,38 @@ import status
 
 log = logging.getLogger(__name__)
 
-database_select_help = asyncio.Queue()  # (sessions, session, keyword)
-database_insert_help = asyncio.Queue()  # (sessions, session, sql)
+db_select_help = asyncio.Queue()  # (sessions, session, keyword)
+db_insert_help = asyncio.Queue()  # (sessions, session, sql)
+
+
+async def select_help_keywords():
+    async with aiopg.connect(database='akrios',
+                             user='postgres',
+                             password='dbPassword123$',
+                             host='127.0.0.1') as conn:
+        sql = f"""SELECT keywords, section, topics from helps.help WHERE viewable is True;"""
+        log.debug(f'Built sql string:\n\r{sql}\n\r')
+        async with conn.cursor() as cur:
+            log.debug('db.select_help() cursor acquired')
+            await cur.execute(sql)
+            ret = await cur.fetchall()
+            log.debug(f'db.select_help_keywords: result is {ret}')
+        if ret:
+            return ret
+        else:
+            log.warning('Unable to query database for help keywords.')
 
 
 async def select_help(conn):
     while status.db['connected']:
-        sessions, session, keyword = await database_select_help.get()
-        log.debug(f'Session({session}) sent {keyword} to select_help')
+        sessions, session, keyword = await db_select_help.get()
         sql = f"""SELECT description from helps.help WHERE keywords && ARRAY['{keyword}']::varchar[];"""
         log.debug(f'Built sql string:\n\r{sql}\n\r')
         async with conn.cursor() as cur:
             log.debug('db.select_help() cursor acquired')
             await cur.execute(sql)
             ret = await cur.fetchone()
+            log.debug(f'db.select_help: result is {ret}')
         if ret:
             await sessions[session].dispatch(ret[0])
         else:
@@ -40,7 +58,7 @@ async def select_help(conn):
 
 async def insert_help(conn):
     while status.db['connected']:
-        sessions, session, sql = await database_insert_help.get()
+        sessions, session, sql = await db_insert_help.get()
         log.info(f'Session({session}) sent {sql} to insert_help')
 
 

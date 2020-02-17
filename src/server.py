@@ -74,7 +74,10 @@ class Session(object):
 
     async def query_db(self, type_, args_=''):
         if type_ == 'help':
-            await db.database_select_help.put((sessions, self.session, args_))
+            await db.db_select_help.put((sessions, self.session, args_))
+        elif type_ == 'help keywords':
+            result = await db.select_help_keywords()
+            return result
 
     async def login(self, name=None):
         if name:
