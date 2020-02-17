@@ -52,6 +52,7 @@ async def select_help(conn):
             await sessions[session].dispatch(ret[0])
         else:
             await sessions[session].dispatch("""I'm sorry, that help doesn't exist.""")
+            log.warning(f'Missing help file for {keyword}')
 
 
 async def connect() -> None:
