@@ -70,10 +70,6 @@ class Atomic(object):
 
         comfind = []
 
-        log.debug(f'atomic.interp before appending possible commands')
-        log.debug(f'player input was: {inp}')
-        log.debug(f'commands.Command.commandhash is:\n\r{commands.Command.commandhash}')
-
         for item in sorted(commands.Command.commandhash):
             if item.startswith(inp[0].lower()):
                 comfind.append(commands.Command.commandhash[item])

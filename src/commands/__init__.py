@@ -296,7 +296,6 @@ class Command(object):
                             return
                 
             try:
-                log.info(f'Executing {command} for {caller.name} at {caller.location}')
                 await command(caller, args_, **kwargs_)
             except Exception as err:
                 to_log = (f"Error in command execution:\n\r"
