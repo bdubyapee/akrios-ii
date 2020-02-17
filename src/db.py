@@ -50,19 +50,19 @@ async def connect() -> None:
     Create tasks related to this connection
     """
     while status.server['running']:
-        log.info('db.connect() attempting to connect to db')
+        log.info('Connecting to akrios database...')
         async with aiopg.connect(database='akrios',
                                  user='postgres',
-                                 password='Skiddo23$',
+                                 password='dbPassword123$',
                                  host='127.0.0.1') as conn:
-            log.info('db.connect() database connection successful')
+            log.info('Database connection successful.')
             status.db['connected'] = True
 
             tasks = [asyncio.create_task(select_help(conn)),
                      asyncio.create_task(insert_help(conn))]
             completed, pending = await asyncio.wait(tasks, return_when='FIRST_COMPLETED')
 
-            log.debug(f'db.connect() after tasks, completed task is: {completed}\n\r')
+            log.debug(f'Database connection closed, completed task is: {completed}\n\r')
 
         status.db['connected'] = False
         log.warning('Connection to database lost!')

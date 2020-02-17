@@ -512,21 +512,21 @@ async def connect() -> None:
     Connect to the Grapevine service.
     Create tasks related to this connection
     """
-    async with websockets.connect('wss://grapevine.haus/socket') as websocket:
-        log.info('Run of grapevine connect')
-        asyncio.create_task(msg_gen_authenticate())
-        status.grapevine['connected'] = True
-        tasks = [asyncio.create_task(parse_received()),
-                 asyncio.create_task(read(websocket)),
-                 asyncio.create_task(write(websocket))]
-        completed, pending = await asyncio.wait(tasks, return_when="FIRST_COMPLETED")
+    while status.server['running']:
+        async with websockets.connect('wss://grapevine.haus/socket') as websocket:
+            log.info('Run of grapevine connect')
+            asyncio.create_task(msg_gen_authenticate())
+            status.grapevine['connected'] = True
+            tasks = [asyncio.create_task(parse_received()),
+                     asyncio.create_task(read(websocket)),
+                     asyncio.create_task(write(websocket))]
+            completed, pending = await asyncio.wait(tasks, return_when="FIRST_COMPLETED")
 
-    log.info('Shutting down Grapevine connection.')
-    log.info(f'Grapevine completed task: {completed}\n\r')
-    log.info(f'Grapevine pending tasks: {pending}\n\r')
-    status.grapevine['connected'] = False
-    subscribed.clear()
-    other_games_players.clear()
+        log.info('Shutting down Grapevine connection.')
+        log.info(f'Grapevine completed task: {completed}\n\r')
+        status.grapevine['connected'] = False
+        subscribed.clear()
+        other_games_players.clear()
 
 
 async def msg_gen_authenticate() -> None:

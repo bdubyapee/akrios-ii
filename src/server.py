@@ -295,10 +295,10 @@ async def main() -> None:
     log.info('Calling main()')
     tasks = [asyncio.create_task(db.connect(), name='db'),
              asyncio.create_task(frontend.connect(), name='frontend'),
-             # asyncio.create_task(grapevine.connect(), name='grapevine'),
+             asyncio.create_task(grapevine.connect(), name='grapevine'),
              asyncio.create_task(handle_commands(), name='server-commands'),
              asyncio.create_task(handle_messages(), name='server-messages'),
-             # asyncio.create_task(handle_grapevine_messages(), name='grapevine'),
+             asyncio.create_task(handle_grapevine_messages(), name='grapevine'),
              ]
 
     log.info('Created engine task list')
