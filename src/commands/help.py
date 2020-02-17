@@ -27,6 +27,7 @@ async def help(caller, args, **kwargs):
         if ' ' in key:
             key = key.split()[0]
         await caller.sock.query_db('help', key)
+        await caller.sock.send_prompt()
     else:
         header = f"{{rHelp Files by Topic{{x"
         await caller.write(f"{header:^80}")

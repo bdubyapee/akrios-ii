@@ -43,7 +43,7 @@ async def move(caller, args, **kwargs):
                 was_building = False
             newroom = caller.location.area.room_by_vnum(exit_.destination)
             await caller.move(newroom, caller.location, args)
-            await caller.interp("look")
+            await caller.interp("look", forced=True)
             if was_building:
                 await Command.commandhash['roomedit'](caller, str(exit_.destination))
         else:

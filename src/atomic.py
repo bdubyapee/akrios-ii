@@ -34,7 +34,7 @@ class Atomic(object):
         self.short_description = ''
         self.snooped_by = []
 
-    async def interp(self, inp=None):
+    async def interp(self, inp=None, forced=False):
 
         if self.snooped_by:
             for each_person in self.snooped_by:
@@ -57,7 +57,7 @@ class Atomic(object):
                 self.editing.add('')
                 return
             else:
-                await self.write('')
+                await self.sock.send_prompt()
                 return
 
         # Look in living thing command alias dict, swap alias for full command if found        
@@ -97,10 +97,10 @@ class Atomic(object):
                         await comfind[0](self, ' '.join(inp[1:]))
                 else:
                     await comfind[0](self, ' '.join(inp[1:]))
+                    if self.is_player and not forced:
+                        await self.sock.send_prompt()
             except (NameError, IndexError) as msg:
                 await self.write(msg)
-            if self.is_player:
-                await self.sock.send_prompt()
         else:
             await self.write("Huh?")
 
