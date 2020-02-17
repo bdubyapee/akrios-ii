@@ -1,0 +1,80 @@
+{
+    "agemaximum": 0,
+    "ageminimum": 0,
+    "agility": 50,
+    "alignment": [
+        "neutral"
+    ],
+    "ba_bashing": 0,
+    "ba_lashing": 0,
+    "ba_piercing": 0,
+    "ba_slashing": 0,
+    "bodyparts": [
+        "head",
+        "ear",
+        "eye",
+        "tongue",
+        "tooth",
+        "mane",
+        "hide",
+        "leg",
+        "hoof",
+        "tail",
+        "torso",
+        "entrails",
+        "stomach",
+        "kidney",
+        "heart",
+        "liver",
+        "lung"
+    ],
+    "br_disease": 0,
+    "br_earth": 0,
+    "br_fire": 0,
+    "br_holy": 0,
+    "br_ice": 0,
+    "br_lightning": 0,
+    "br_magic": 0,
+    "br_mental": 0,
+    "br_physical": 0,
+    "br_poison": 0,
+    "charisma": 50,
+    "constitution": 70,
+    "description": "Donkeys are work animals used most often to plow fields and haul loads. They\ncan be used for travel, but are not as fast as horses.",
+    "descriptive": "a donkey",
+    "eyes": [
+        "brown",
+        "black"
+    ],
+    "hair": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "heightfeet": 6,
+    "heightinches": 6,
+    "intelligence": 45,
+    "json_class_name": "__Race__",
+    "json_version": 1,
+    "luck": 55,
+    "name": "donkey",
+    "playable": "false",
+    "size": "large",
+    "skin": [
+        "pink",
+        "black"
+    ],
+    "special_skills": {},
+    "speed": 60,
+    "start_location": {},
+    "strength": 65,
+    "undead": "false",
+    "wearlocations": [
+        "head",
+        "neck",
+        "back",
+        "tail"
+    ],
+    "weight": 1000,
+    "wisdom": 45
+}

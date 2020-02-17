@@ -1,0 +1,13 @@
+{
+    "aid": "'6f9d5ff2-9a28-4009-a5a3-44afc563f951",
+    "json_class_name": "__Reset__",
+    "json_version": 1,
+    "mobile_list": {
+        "1001": "{\n    \"target_loc_vnum\": 1001,\n    \"target_max_amount\": 10,\n    \"target_type\": \"mobile\",\n    \"target_vnum\": 1001\n}"
+    },
+    "object_list": {
+        "1001": "{\n    \"target_loc_is\": \"room\",\n    \"target_loc_vnum\": 1001,\n    \"target_max_amount\": 10,\n    \"target_mobile_wear\": \"false\",\n    \"target_type\": \"object\",\n    \"target_vnum\": 1001\n}",
+        "1002": "{\n    \"target_loc_is\": \"mobile\",\n    \"target_loc_vnum\": 1001,\n    \"target_max_amount\": 10,\n    \"target_mobile_wear\": \"true\",\n    \"target_type\": \"object\",\n    \"target_vnum\": 1001\n}"
+    },
+    "shop_list": {}
+}

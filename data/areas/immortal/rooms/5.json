@@ -1,0 +1,13 @@
+{
+    "description": "This is a cardboard box. There's a window and a door cut in the sides.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "belial's cardboard box",
+    "propertyvalue": "",
+    "sectortype": [],
+    "vnum": 5
+}

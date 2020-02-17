@@ -1,0 +1,68 @@
+{
+    "agemaximum": 0,
+    "ageminimum": 0,
+    "agility": 70,
+    "alignment": [
+        "neutral"
+    ],
+    "ba_bashing": 0,
+    "ba_lashing": 0,
+    "ba_piercing": 0,
+    "ba_slashing": 0,
+    "bodyparts": [
+        "head",
+        "eye",
+        "leg",
+        "torso",
+        "thorax",
+        "mandible",
+        "entrails"
+    ],
+    "br_disease": 0,
+    "br_earth": 0,
+    "br_fire": 0,
+    "br_holy": 0,
+    "br_ice": 0,
+    "br_lightning": 0,
+    "br_magic": 0,
+    "br_mental": 0,
+    "br_physical": 0,
+    "br_poison": 0,
+    "charisma": 35,
+    "constitution": 50,
+    "description": "Spiders usually aren't a big problem, unless they are big spiders. Some are\nquite poisonous, and when you see one you can be sure there are others\nnearby.",
+    "descriptive": "a spider",
+    "eyes": [
+        "black"
+    ],
+    "hair": [
+        "black",
+        "brown"
+    ],
+    "heightfeet": 4,
+    "heightinches": 0,
+    "intelligence": 50,
+    "json_class_name": "__Race__",
+    "json_version": 1,
+    "luck": 55,
+    "name": "spider",
+    "playable": "false",
+    "size": "large",
+    "skin": [
+        "black",
+        "brown"
+    ],
+    "special_skills": {},
+    "speed": 70,
+    "start_location": {},
+    "strength": 55,
+    "undead": "false",
+    "wearlocations": [
+        "back",
+        "neck",
+        "right leg",
+        "left leg"
+    ],
+    "weight": 500,
+    "wisdom": 45
+}

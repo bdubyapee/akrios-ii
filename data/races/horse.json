@@ -1,0 +1,83 @@
+{
+    "agemaximum": 0,
+    "ageminimum": 0,
+    "agility": 65,
+    "alignment": [
+        "neutral"
+    ],
+    "ba_bashing": 0,
+    "ba_lashing": 0,
+    "ba_piercing": 0,
+    "ba_slashing": 0,
+    "bodyparts": [
+        "head",
+        "ear",
+        "eye",
+        "tongue",
+        "tooth",
+        "mane",
+        "hide",
+        "leg",
+        "torso",
+        "hoof",
+        "tail",
+        "skull",
+        "bone",
+        "entrails",
+        "stomach",
+        "heart",
+        "kidney",
+        "liver",
+        "lung"
+    ],
+    "br_disease": 0,
+    "br_earth": 0,
+    "br_fire": 0,
+    "br_holy": 0,
+    "br_ice": 0,
+    "br_lightning": 0,
+    "br_magic": 0,
+    "br_mental": 0,
+    "br_physical": 0,
+    "br_poison": 0,
+    "charisma": 55,
+    "constitution": 65,
+    "description": "Horses are used primarily for travel or pulling wagons. A good horse can be\na great help to any traveller.",
+    "descriptive": "a horse",
+    "eyes": [
+        "black",
+        "brown"
+    ],
+    "hair": [
+        "black",
+        "white",
+        "brown",
+        "beige"
+    ],
+    "heightfeet": 7,
+    "heightinches": 0,
+    "intelligence": 50,
+    "json_class_name": "__Race__",
+    "json_version": 1,
+    "luck": 55,
+    "name": "horse",
+    "playable": "false",
+    "size": "large",
+    "skin": [
+        "black",
+        "pink"
+    ],
+    "special_skills": {},
+    "speed": 70,
+    "start_location": {},
+    "strength": 60,
+    "undead": "false",
+    "wearlocations": [
+        "head",
+        "neck",
+        "back",
+        "tail"
+    ],
+    "weight": 1200,
+    "wisdom": 50
+}

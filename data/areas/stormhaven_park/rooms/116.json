@@ -1,0 +1,13 @@
+{
+    "description": "Large trees stand tall along either side of a path of hard packed dirt,\n\rtheir branches reaching out over the path creating a living roof over the\n\rtrail. Tall grass and a variety of bushes fill in the spaces between the\n\rtrees creating a wall of vegetation on either side of the walkway. The wide\n\rdirt path leads off to the northsouthwest and southwest through the park.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "a well beaten path",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 116
+}

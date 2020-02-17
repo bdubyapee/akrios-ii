@@ -1,0 +1,13 @@
+{
+    "description": "Below this bridge crystal clear water rests calmly, with only the occasional\n\rripple disturbing the surface of the pond. The bridge itself is made of\n\rfinely sanded wood stained a dark red, and is wide enough to let a few\n\rpeople stand side by side. Handrails made of the same red stained wood run\n\ron either side of the bridge, offering support and safety for those\n\rcrossing. To the west is a small island upon which several stone benches\n\rsit. To the east a dirt path leads off into the trees.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "a small bridge",
+    "propertyvalue": "",
+    "sectortype": [
+        "city"
+    ],
+    "vnum": 136
+}

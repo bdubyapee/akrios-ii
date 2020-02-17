@@ -1,0 +1,13 @@
+{
+    "description": "Trees encircle a large clearing of short cut grass that slopes gently down\n\rtoward a pond sitting in the middle of the clearing. The branches of the\n\rtrees reach out in vain trying to cover the sky about the peaceful\n\rsanctuary. In the middle of the pond there is a tiny island with several\n\rbenches that visitors use to relax or feed the ducks. A bridge can also be\n\rseen connecting the small island to the eastern bank of the pond.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "clearing by a pond",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 131
+}

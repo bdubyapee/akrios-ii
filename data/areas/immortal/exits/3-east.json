@@ -1,0 +1,19 @@
+{
+    "casterid": 0,
+    "destination": 5,
+    "direction": "east",
+    "dooropen": "true",
+    "hasdoor": "false",
+    "json_class_name": "__Exit__",
+    "json_version": 1,
+    "keyvnum": 0,
+    "keywords": [],
+    "lockdifficulty": 0,
+    "locked": "false",
+    "magiclockdifficulty": 0,
+    "magiclocked": "false",
+    "magiclocktype": "none",
+    "physicaldifficulty": 0,
+    "room": 3,
+    "size": "huge"
+}

@@ -1,0 +1,15 @@
+{
+    "description": "You are on a hard packed gravel path. To the west is the Eastern\n\r\rentrance to Whitestone Keep. Massive iron bound timbers are fastened\n\r\rtogether to form the forbidding doors to the inner city. The city walls\n\r\rthemselves are easily twenty feet tall. White granite blocks with veins of\n\r\rshimmering minerals, the massive wall runs both north and south from here.\n\r\rTo the west you can see the towering peaks of the Castle of Whitestone\n\r\rKeep reaching towards the sky.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "Before the gates",
+    "propertyvalue": "moderate",
+    "sectortype": [
+        "city"
+    ],
+    "vnum": 1001
+}

@@ -1,0 +1,14 @@
+{
+    "description": "This is where a very cool room description would go.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "jubelos pimp shack",
+    "propertyvalue": "very rich",
+    "sectortype": [
+        "indoor",
+        "air"
+    ],
+    "vnum": 2
+}

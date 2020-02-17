@@ -1,0 +1,15 @@
+{
+    "description": "Dark and dank, this tunnel continues to the north.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "a passage in the tunnel",
+    "propertyvalue": "very poor",
+    "sectortype": [
+        "inside"
+    ],
+    "vnum": 4
+}

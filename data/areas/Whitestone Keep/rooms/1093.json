@@ -1,0 +1,16 @@
+{
+    "description": " A small home, there is a small chair placed in front of the fireplace with\n\ra table next to it. A bed sits in the northwest corner of the room, and a\n\rsmall chest sits at the far end of the bed. Various paintings of a man\n\rwearing full plate armor adorn the walls. To the east is a door leading out\n\rinto East Wall Road.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "Inside a small Home",
+    "propertyvalue": "moderate",
+    "sectortype": [
+        "inside",
+        "city"
+    ],
+    "vnum": 1093
+}

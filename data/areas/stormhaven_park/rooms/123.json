@@ -1,0 +1,13 @@
+{
+    "description": "Hard packed dirt forms a path that leads from a bridge to the west back into\n\rthe tall trees, encircling the clearing, to the east. The bridge spans over\n\ra pond to a small island sitting in the middle of it. Along the banks of the\n\rpond, short cut grass slopes up gently from the pond up to the trees\n\rsurrounding the area.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "clearing by a pond",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 123
+}

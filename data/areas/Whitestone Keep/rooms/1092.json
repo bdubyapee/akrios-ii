@@ -1,0 +1,16 @@
+{
+    "description": " The entire west side of the room is occupied by a large four foot tall bar.\n\rThe west wall is lined with doorless shelves containing all manner of\n\rbottles and trinkets. The remaining floor space is covered with a variety of\n\rtables and chairs. No two tables appear to be the same, however the chairs\n\rall appear to be crafted the same. Many paintings line the walls along with\n\rhooks for hanging cloaks and other gear. Spaced evenly around each wall are\n\riron brackets, each holding a torch to light the room.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "William the Braves Tavern",
+    "propertyvalue": "moderate",
+    "sectortype": [
+        "inside",
+        "city"
+    ],
+    "vnum": 1092
+}

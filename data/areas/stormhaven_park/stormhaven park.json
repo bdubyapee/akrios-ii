@@ -1,0 +1,14 @@
+{
+    "alignment": "neutral",
+    "author": "jubelo",
+    "difficulty": "all",
+    "hometown": "human",
+    "json_class_name": "__Area__",
+    "json_version": 1,
+    "locationx": 10,
+    "locationy": 10,
+    "name": "stormhaven park",
+    "plane": "material",
+    "vnumhigh": 200,
+    "vnumlow": 101
+}

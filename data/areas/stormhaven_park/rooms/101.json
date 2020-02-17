@@ -1,0 +1,13 @@
+{
+    "description": "A stone wall of eight feet runs to the west and east, an opening in it here\n\rat the entrance. The wall stands next to a street that lies parallel on the\n\rnorth side of the barrier. Within the wall stand tall trees, many of which\n\rhave branches that hang over the wall and the street beside it. A well used\n\rpath leads off to the south through the trees. Between the trees a variety\n\rof vegetation grows such as bushes and tall grass.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "northern entrance to the park",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 101
+}

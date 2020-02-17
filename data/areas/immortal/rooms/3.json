@@ -1,0 +1,15 @@
+{
+    "description": "You are inside of a small cavern.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "inside the cavern",
+    "propertyvalue": "very poor",
+    "sectortype": [
+        "inside"
+    ],
+    "vnum": 3
+}

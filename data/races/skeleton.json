@@ -1,0 +1,81 @@
+{
+    "agemaximum": 0,
+    "ageminimum": 0,
+    "agility": 55,
+    "alignment": [
+        "neutral evil"
+    ],
+    "ba_bashing": 0,
+    "ba_lashing": 0,
+    "ba_piercing": 0,
+    "ba_slashing": 0,
+    "bodyparts": [
+        "skull",
+        "bone"
+    ],
+    "br_disease": 0,
+    "br_earth": 0,
+    "br_fire": 0,
+    "br_holy": 0,
+    "br_ice": 0,
+    "br_lightning": 0,
+    "br_magic": 0,
+    "br_mental": 0,
+    "br_physical": 0,
+    "br_poison": 0,
+    "charisma": 40,
+    "constitution": 55,
+    "description": "Undead monsters made of bones. Blunt objects work well against these foes.",
+    "descriptive": "",
+    "eyes": [
+        "none"
+    ],
+    "hair": [
+        "none"
+    ],
+    "heightfeet": 6,
+    "heightinches": 0,
+    "intelligence": 40,
+    "json_class_name": "__Race__",
+    "json_version": 1,
+    "luck": 55,
+    "name": "skeleton",
+    "playable": "false",
+    "size": "medium",
+    "skin": [
+        "none"
+    ],
+    "special_skills": {},
+    "speed": 65,
+    "start_location": {},
+    "strength": 55,
+    "undead": "true",
+    "wearlocations": [
+        "head",
+        "face",
+        "eyes",
+        "neck",
+        "torso",
+        "back",
+        "waist",
+        "finger",
+        "legs",
+        "feet",
+        "right shoulder",
+        "right arm",
+        "right forearm",
+        "right hand",
+        "right leg",
+        "right shin",
+        "right foot",
+        "left shoulder",
+        "left arm",
+        "left forearm",
+        "left hand",
+        "left leg",
+        "left shin",
+        "left foot"
+    ],
+    "weight": 90,
+    "wisdom": 40
+}

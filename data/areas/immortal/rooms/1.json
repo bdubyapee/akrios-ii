@@ -1,0 +1,18 @@
+{
+    "description": "This is one dark ass hallway.",
+    "extradescriptions": {},
+    "flags": [
+        "on fire",
+        "dead zone"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "a great name for the first room name",
+    "propertyvalue": "rich",
+    "sectortype": [
+        "indoor",
+        "underground",
+        "air"
+    ],
+    "vnum": 1
+}

@@ -1,0 +1,13 @@
+{
+    "description": "Oddly in the mass of trees and other vegetation there is a small clearing.\n\rGiant trees surround an open area of tall grass, their branches reaching out\n\rand nearly blocking out the sky. Another peculiarity is there are none of\n\rthe many bushes, that fill the park, within the clearing.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "a small clearing",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 108
+}

@@ -1,0 +1,13 @@
+{
+    "description": "An opening with an eight foot tall stone wall, running north and south,\n\rleads into a large park within the city. Parallel to the east side of the\n\rwall runs a paved city street. To the west of the wall tall trees tower\n\roverhead, their branches covering the wall and most of the street beside it.\n\rA trail of hard packed dirt runs through the trees off to the southwest.\n\rLarge bushes and tall grass covers the sides of the path where the trees do\n\rnot stand. Hidden behind one {Gbush{x there looks to be a small trail seldom\n\rused.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "eastern entrance to the park",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 115
+}

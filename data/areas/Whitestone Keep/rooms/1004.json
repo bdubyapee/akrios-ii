@@ -1,0 +1,17 @@
+{
+    "description": " Polished smooth cobblestone lines the road leading both north and south. To\n\rthe east the smooth granite wall that surrounds the city reaches high into\n\rthe sky. Criss crossed with sparkling mineral veins. To the west is a small\n\rbuilding with the insignia of the Whitestone Keep militia painted in white\n\rand red on the sturdy looking wooden door.",
+    "extradescriptions": {
+        "insignia": "A white circle with a red sword, hilt down, identifies the Whitestone Keep Militia"
+    },
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "Southern East Wall Road",
+    "propertyvalue": "moderate",
+    "sectortype": [
+        "city"
+    ],
+    "vnum": 1004
+}

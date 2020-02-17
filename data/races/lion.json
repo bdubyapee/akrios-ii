@@ -1,0 +1,81 @@
+{
+    "agemaximum": 0,
+    "ageminimum": 0,
+    "agility": 70,
+    "alignment": [
+        "neutral"
+    ],
+    "ba_bashing": 0,
+    "ba_lashing": 0,
+    "ba_piercing": 0,
+    "ba_slashing": 0,
+    "bodyparts": [
+        "head",
+        "ear",
+        "eye",
+        "nose",
+        "whisker",
+        "tooth",
+        "tongue",
+        "skull",
+        "bone",
+        "hide",
+        "pelt",
+        "torso",
+        "leg",
+        "paw",
+        "claw",
+        "tail",
+        "entrails",
+        "stomach",
+        "heart",
+        "kidney",
+        "liver",
+        "lung"
+    ],
+    "br_disease": 0,
+    "br_earth": 0,
+    "br_fire": 0,
+    "br_holy": 0,
+    "br_ice": 0,
+    "br_lightning": 0,
+    "br_magic": 0,
+    "br_mental": 0,
+    "br_physical": 0,
+    "br_poison": 0,
+    "charisma": 50,
+    "constitution": 60,
+    "description": "Large cats, usually referred to as king of the jungle. Don't get between a\nhungry one and its meal.",
+    "descriptive": "a lion",
+    "eyes": [
+        "yellow",
+        "green"
+    ],
+    "hair": [
+        "yellow"
+    ],
+    "heightfeet": 4,
+    "heightinches": 6,
+    "intelligence": 45,
+    "json_class_name": "__Race__",
+    "json_version": 1,
+    "luck": 60,
+    "name": "lion",
+    "playable": "false",
+    "size": "medium",
+    "skin": [
+        "pink"
+    ],
+    "special_skills": {},
+    "speed": 60,
+    "start_location": {},
+    "strength": 65,
+    "undead": "false",
+    "wearlocations": [
+        "neck",
+        "back",
+        "tail"
+    ],
+    "weight": 200,
+    "wisdom": 40
+}

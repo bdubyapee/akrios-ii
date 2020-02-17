@@ -1,0 +1,13 @@
+{
+    "description": "Overgrown bushes crowd this tiny trail making it difficult to traverse it.\n\rIt looks as if this path is used more by animals than man and obviosly is\n\rnot maintained by any of the park's groundskeepers. Trees crowd together on\n\reither side as if they are trying to block anyone from coming this way. The\n\rtrail continues to the west and southeast.",
+    "extradescriptions": {},
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "an overgrown trail",
+    "propertyvalue": "",
+    "sectortype": [
+        "forest"
+    ],
+    "vnum": 132
+}

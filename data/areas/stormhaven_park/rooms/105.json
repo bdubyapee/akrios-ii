@@ -1,0 +1,15 @@
+{
+    "description": "This path looks to be well used by a number of pedestrians from the city.\n\rHard packed dirt runs north and south here, wide enough to let several\n\rpeople walk beside each other. Along the trail tall, ancient trees stand\n\rlike guards at attention to either side. Their branches criss crossing each\n\rother making a conopy above the trail. A variety of bushes and grasses grow\n\rbetween the silent senteries. Hidden behind one {Gbush{x there appears to be\n\ra small trail.",
+    "extradescriptions": {
+        "bush": "It is a regular small bush."
+    },
+    "flags": [],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "a path through the trees",
+    "propertyvalue": "",
+    "sectortype": [
+        "field"
+    ],
+    "vnum": 105
+}

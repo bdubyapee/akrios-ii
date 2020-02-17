@@ -1,0 +1,14 @@
+{
+    "alignment": "lawful good",
+    "author": "Jubelo",
+    "difficulty": "extreme",
+    "hometown": "human",
+    "json_class_name": "__Area__",
+    "json_version": 1,
+    "locationx": 10,
+    "locationy": 5,
+    "name": "Immortal Area",
+    "plane": "material",
+    "vnumhigh": 100,
+    "vnumlow": 1
+}

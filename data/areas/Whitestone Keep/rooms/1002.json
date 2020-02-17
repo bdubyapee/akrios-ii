@@ -1,0 +1,15 @@
+{
+    "description": " To your north and south the walls of the keep are white and smooth. Veins\n\rof shimmering minerals run through the walls and streak up through the\n\rstonework above you. Beneath your feet smooth cobblestone is covered in a\n\rfine layer of dirt from the outer path.",
+    "extradescriptions": {},
+    "flags": [
+        "none"
+    ],
+    "json_class_name": "__Room__",
+    "json_version": 1,
+    "name": "Between the gates",
+    "propertyvalue": "moderate",
+    "sectortype": [
+        "city"
+    ],
+    "vnum": 1002
+}

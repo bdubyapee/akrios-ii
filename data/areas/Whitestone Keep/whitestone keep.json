@@ -1,0 +1,14 @@
+{
+    "alignment": "all",
+    "author": "jubelo",
+    "difficulty": "all",
+    "hometown": "all",
+    "json_class_name": "__Area__",
+    "json_version": 1,
+    "locationx": 50,
+    "locationy": 50,
+    "name": "whitestone keep",
+    "plane": "material",
+    "vnumhigh": 1500,
+    "vnumlow": 1001
+}
