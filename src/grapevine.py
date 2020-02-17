@@ -181,6 +181,7 @@ async def received_player_logout(message, sent_refs_) -> Tuple:
         # We are a success message from Grapevine returned from our notification.
         if message['ref'] in sent_refs_ and is_event_status(message, 'success'):
             sent_refs_.pop(message['ref'])
+            return
         # We are receiving a player logout from another game.
         if 'game' in message['payload']:
             game = message['payload']['game'].capitalize()
@@ -209,6 +210,7 @@ async def received_player_login(message, sent_refs_) -> Tuple:
     if 'ref' in message:
         if message['ref'] in sent_refs_ and is_event_status(message, 'success'):
             sent_refs_.pop(message['ref'])
+            return
         if 'game' in message['payload']:
             game = message['payload']['game'].capitalize()
             player_ = message['payload']['name'].capitalize()
@@ -482,6 +484,7 @@ async def parse_received() -> None:
     while status.grapevine['connected']:
         message = await messages_from_grapevine.get()
         message = json.loads(message)
+        log.debug(f'Message received from Grapevine: {message}')
         if 'event' in message and message['event'] in rcvr_func:
             exec_func, args = rcvr_func[message['event']]
             if args is None:

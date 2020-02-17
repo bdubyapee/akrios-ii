@@ -202,7 +202,7 @@ async def cmd_grapevine_tells_send(message):
     for eachplayer in player.playerlist:
         if eachplayer.disp_name == caller:
             if eachplayer.oocflags_stored['grapevine'] == 'true':
-                eachplayer.write(message)
+                await eachplayer.write(message)
                 return
 
 
@@ -213,7 +213,7 @@ async def cmd_grapevine_tells_receive(message):
     for eachplayer in player.playerlist:
         if eachplayer.disp_name == target.capitalize():
             if eachplayer.oocflags_stored['grapevine'] == 'true':
-                eachplayer.write(message)
+                await eachplayer.write(message)
                 return
 
 
@@ -225,7 +225,7 @@ async def cmd_grapevine_games_connect(message):
         grape_enabled = [players for players in player.playerlist
                          if players.oocflags_stored['grapevine'] == 'true']
         for eachplayer in grape_enabled:
-            eachplayer.write(message)
+            await eachplayer.write(message)
 
 
 async def cmd_grapevine_games_disconnect(message):
@@ -235,7 +235,7 @@ async def cmd_grapevine_games_disconnect(message):
         grape_enabled = [players for players in player.playerlist
                          if players.oocflags_stored['grapevine'] == 'true']
         for eachplayer in grape_enabled:
-            eachplayer.write(message)
+            await eachplayer.write(message)
 
 
 async def cmd_grapevine_channels_broadcast(message):
@@ -251,7 +251,7 @@ async def cmd_grapevine_channels_broadcast(message):
                          if players.oocflags_stored['grapevine'] == 'true']
         for eachplayer in grape_enabled:
             if channel in eachplayer.oocflags['grapevine_channels']:
-                eachplayer.write(message)
+                await eachplayer.write(message)
 
 
 async def cmd_grapevine_player_login(message):
@@ -260,7 +260,7 @@ async def cmd_grapevine_player_login(message):
     grape_enabled = [players for players in player.playerlist
                      if players.oocflags_stored['grapevine'] == 'true']
     for eachplayer in grape_enabled:
-        eachplayer.write(msg)
+        await eachplayer.write(msg)
 
 
 async def cmd_grapevine_player_logout(message):
@@ -269,7 +269,7 @@ async def cmd_grapevine_player_logout(message):
     grape_enabled = [players for players in player.playerlist
                      if players.oocflags_stored['grapevine'] == 'true']
     for eachplayer in grape_enabled:
-        eachplayer.write(msg)
+        await eachplayer.write(msg)
 
 
 async def handle_grapevine_messages() -> None:
@@ -288,7 +288,7 @@ async def handle_grapevine_messages() -> None:
 
         event_type, values = message
         if event_type in commands:
-            commands[event_type](values)
+            await commands[event_type](values)
 
 
 async def main() -> None:
