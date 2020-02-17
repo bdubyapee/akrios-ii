@@ -222,7 +222,7 @@ class Login(object):
             if self.softboot:
                 await newobject.write('')
                 await newobject.write('Something feels different.')
-            await newobject.sock.grape_login_successful()
+            await newobject.sock.grapevine_login()
             await newobject.sock.fe_login_successful()
             newobject.lasttime = time.ctime()
             newobject.lasthost = newobject.sock.host
@@ -385,6 +385,8 @@ class Login(object):
             newplayer.alias['d'] = 'down'
             await newplayer.interp('look')
             log.info(f"{newplayer.name} @ {newplayer.sock.host} is a new character entering Akrios.")
+            await newplayer.sock.grapevine_login()
+            await newplayer.sock.fe_login_successful()
             del self
         else:
             await self.roll_stats()

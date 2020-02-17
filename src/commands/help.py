@@ -9,7 +9,7 @@
 # By: Jubelo
 
 from commands import *
-
+import db
 
 name = "help"
 version = 1
@@ -32,9 +32,7 @@ async def help(caller, args, **kwargs):
         header = f"{{rHelp Files by Topic{{x"
         await caller.write(f"{header:^80}")
 
-        result = await caller.sock.query_db('help keywords')
-
-        log.debug(f'HELP RESULT: {result}')
+        result = await db.select_help_keywords()
 
         topics = {}
         for keyword, section, topic in result:

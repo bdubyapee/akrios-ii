@@ -61,11 +61,18 @@ class Session(object):
     async def fe_login_successful(self):
         asyncio.create_task(frontend.msg_gen_player_login(self.owner.name.capitalize(), self.session))
 
-    async def grape_login_successful(self):
+    async def fe_logout_successful(self):
+        asyncio.create_task(frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session))
+
+    async def grapevine_login(self):
         asyncio.create_task(grapevine.msg_gen_player_login(self.owner.name))
+
+    async def grapevine_logout(self):
+        asyncio.create_task(grapevine.msg_gen_player_logout(self.owner.name))
 
     async def handle_close(self):
         await frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session)
+        await grapevine.msg_gen_player_logout(self.owner.name)
         self.state['connected'] = False
         self.state['logged in'] = False
         for tasks in asyncio.all_tasks():
@@ -75,9 +82,6 @@ class Session(object):
     async def query_db(self, type_, args_=''):
         if type_ == 'help':
             await db.db_select_help.put((sessions, self.session, args_))
-        elif type_ == 'help keywords':
-            result = await db.select_help_keywords()
-            return result
 
     async def login(self, name=None):
         if name:

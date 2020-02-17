@@ -26,13 +26,19 @@ class Atomic(object):
     def __init__(self):
         super().__init__()
         self.alias = {}
+        self.building = None
         self.capability = []
+        self.editing = None
         self.location = None
         self.last_input = 0
         self.name = ''
         self.oocflags = {}
         self.short_description = ''
         self.snooped_by = []
+        self.sock = None
+
+    async def write(self, *args, **kwargs):
+        pass
 
     async def interp(self, inp=None, forced=False):
 
