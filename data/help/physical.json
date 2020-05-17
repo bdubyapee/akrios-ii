@@ -1,0 +1,12 @@
+{
+    "creator": "Jubelo",
+    "description": "\n\r{RHelp Topic{W:{x physical\n\r\n\rThe {Bphysical{x discipline deals with physical skills of course.\n\rMartial arts, weapons, and thief skills will all be part of the\n\rphysical group. Anyone who wishes to create a rogue or fighter type\n\rcharacter will be best off choosing thsi discipline.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "physical"
+    ],
+    "section": "player",
+    "topics": "game, rp, mythos",
+    "viewable": "true"
+}

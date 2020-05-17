@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: afk{x\n\r\n\rWhen this command is entered you will be flagged as afk, or away from\n\rkeyboard. This allows other players to see that you are not currently\n\rat your computer. Any command entered while flagged as afk will remove\n\ryou from afk.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "afk"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

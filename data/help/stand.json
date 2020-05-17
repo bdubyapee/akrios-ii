@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "\n\r{RHelp Topic{W: stand{x\n\r\n\rThe {Wstand{x command is utilized to make your character stand up.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "stand"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

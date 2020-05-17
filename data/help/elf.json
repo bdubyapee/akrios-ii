@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Elf, Elves{x\n\r\n\rElves live in the great forest, Mystic Woods An enchanted place said to\n\rhold many great secrets and magical beings. The elves call this place home\n\rliving in the tops of the great trees. Elves are a magical race being very\n\rattuned to the mystic arts. They are highly intelligent and agile and can\n\rnot be found in a forest unless they wish to be. Their society is based\n\raround nobility. Elves can be a hard people to understand as they are a\n\rmoody people and noone really understands what the elves find offensive and\n\rwhat they like. In fact most people think elves find all things offensive\n\rexcept other elves and magic. Elves and Mazreki are mortal enemies. The\n\relves view the Mazreki as being abominations and would love nothing more\n\rthan to see the species wiped from the earth. Elves stand about 5'5\" to\n\r6'0\". They have gold, blue, green, or violet eyes. Their hair is either\n\rwhite, blonde, or a lightly hued blue. They are a wonderful source of\n\rmagical knowledge, if one can get them to talk with them.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "elf"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

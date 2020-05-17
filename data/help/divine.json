@@ -1,0 +1,12 @@
+{
+    "creator": "Jubelo",
+    "description": "\n\r{RHelp Topic{W:{x divine\n\r\n\rThe {Bdivine{x discipline is based around deities and religion. Any skill\n\rgranted to players by a deity is in this group, as always there may be a\n\rfew exceptions. Players wishing to play a priest or other religious\n\rfanatic type will benefit the most from this discipline.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "divine"
+    ],
+    "section": "player",
+    "topics": "game, rp, mythos",
+    "viewable": "true"
+}

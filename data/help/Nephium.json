@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Nephium{x\n\r\n\rNephium is the God of Death. He seems to have little character, and rarely\n\rshows emotion. He is not bent on bringing death to the world, but to purge\n\rthe old and stagnant so that there is room for new life. He also despises\n\rthe undead charging his followers to destroy any and all they come across.\n\rIt is said that he and Aludra were once lovers, but currently there seems to\n\rbe no romantic relationship between them. He is known to work, at times,\n\rwith Malyki and Caerdik when he deems it necessary, but never at the same\n\rtime seeing as how they don't get along with each other. Sirian and\n\rAdmanthos are his greatest enemies. Nephium's followers specialize in\n\rturning and destroying undead. They do have the ability to ressurect, but\n\rrarely do so as it is too close to violating their beliefs about raising\n\rundead.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "nephium"
+    ],
+    "section": "player",
+    "topics": "deities",
+    "viewable": "true"
+}

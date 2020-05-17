@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Myst{x\n\r\n\rMyst is the Goddess of Mischief. She is a trickster and loves intrigue. She\n\rlike to toy with people's minds, mortal and immortal alike. It is said that\n\rshe is a creation of Sirian's to spread more chaos in the world, though that\n\rdoesn't seem likely. She is very mysterious and is sure to have a hand in\n\rany number of plots and schemes. Her favorite pasttime seems to be annoying\n\rCaerdik in one way or another. Even being mysterious as she is, she is also\n\rvery flamboyant and flirtatious. Spies, thieves, and even politicians seem\n\rto make up the majority of myst's followers. Her worshippers specialize in\n\rstealth and misdirection.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "myst"
+    ],
+    "section": "player",
+    "topics": "deities",
+    "viewable": "true"
+}

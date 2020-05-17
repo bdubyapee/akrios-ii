@@ -20,11 +20,11 @@ from typing import Dict, List
 import player
 import area
 import color
-import db
 import frontend
 import grapevine
+import helpsys
 import login
-from races import init as races_init
+import races
 import status
 from world import server_log
 
@@ -78,10 +78,6 @@ class Session(object):
         for tasks in asyncio.all_tasks():
             if self.session == tasks.get_name():
                 tasks.cancel()
-
-    async def query_db(self, type_, args_=''):
-        if type_ == 'help':
-            await db.db_select_help.put((sessions, self.session, args_))
 
     async def login(self, name=None):
         if name:
@@ -296,8 +292,7 @@ async def handle_grapevine_messages() -> None:
 
 async def main() -> None:
     log.info('Calling main()')
-    tasks = [asyncio.create_task(db.connect(), name='db'),
-             asyncio.create_task(frontend.connect(), name='frontend'),
+    tasks = [asyncio.create_task(frontend.connect(), name='frontend'),
              asyncio.create_task(grapevine.connect(), name='grapevine'),
              asyncio.create_task(handle_commands(), name='server-commands'),
              asyncio.create_task(handle_messages(), name='server-messages'),
@@ -339,7 +334,8 @@ if __name__ == '__main__':
 
     loop.set_exception_handler(handle_exception_generic)
 
-    races_init()
+    helpsys.init()
+    races.init()
     asyncio.gather(area.init())
 
     status.server['running'] = True

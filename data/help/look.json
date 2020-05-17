@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: look{x\n\r\n\r{Wlook <argument>{x\n\r     Typing look on its own will show you the room you are currently in along\n\r     with who and what else is in the room with you. Typing look with an\n\r     (argument) will allow you to look at a person or thing.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "look"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "{RHelp Topic{W: toggle <optional argument>{x\n\r\n\rThis allows you to toggle on/off various features and channels in\n\rthe game. Try {Wtoggle{x with no arguments to see the available\n\rarguments you can provide to toggle options.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "toggle"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

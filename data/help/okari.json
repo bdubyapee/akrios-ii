@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Okari{x\n\r\n\rOkari are a large race of good natured giants. Attuned to nature and\n\rpeople, they are often considered the friendliest and greatest of friends.\n\rThey reside in the mountains and foothills of the mountain range known as\n\rAludria's Tears. These mountains are rumored to be created by the goddess of\n\rlife tears falling from the heavens upon the land. The mountains are giant\n\rrolling hills lush with life. All manner of plants and animals reside within\n\rthese large rounded mountains. It is also rumored that a large lake hidden\n\rwithin the mountains is filled with the last of Aludria's Tears, and any who\n\rdrink from it will live a extraordinaryly long life by taking years off your\n\rlife. Of course such a wonderful lake is also said to be guarded by the a\n\rbeast created by the god of death, Nephium. Okari are ruled by a council of\n\relders that govern their society. Okari and dwarves are good friends and are\n\roften seen within each other's cities as the dwarves live beneath the\n\rmountains that the Okari inhabit. Even though they appear exact opposites in\n\rappearance and mannerism Dwarves and Okari get on famously well. Of course\n\rit is hard not to get along with the Okari no matter who you are. Okari\n\rstand anywhere from 7'5\" to 9'0\" tall and are quite thick. They are\n\rextremely strong and hardy, although a bit slow and clumsy. They live a long\n\rtime altough not as long as an Elf. They are almost always jolly and\n\rpractically impossible to anger, but if and when they are they are\n\rconsidered mightest of opponents. They are extremely religous and worship\n\rAludria and Nephium with equal revere, for they understand that death is\n\rmerely apart of life. Their hair and eye colors vary as much as humans,\n\ralthough their skin color is always a healthy bronze color.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "okari"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

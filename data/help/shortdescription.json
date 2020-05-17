@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "{RHelp Topic{W: shortdescription {x\n\r\n\r{Wshortdescription <argument>{x\n\r     Sets your characters short (room) description to <argument>.\n\r\n\rDescriptions for characters are there for roleplaying purposes, to give\n\ryour character a little customization. Please keep descriptions tasteful,\n\rand rp oriented.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "shortdescription"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

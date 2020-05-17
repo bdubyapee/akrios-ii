@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Raceedit{x <race> / <new> (newrace)\n\r\n\r{Wraceedit new (argument):{x\n\r     This will start a new race with the name of (agrument).\n\r\n\r{Wraceedit (argument):{x\n\r     This begins editing the race named (argument).\n\r\n\r{WAvailable options while editing a race:{x\n\r     {Bname{W:{x Sets name of race.\n\r     {Bplayable{W:{x True or False.\n\r     {Bsize{W:{x Tiny, small, medium, large, or huge.\n\r     {Bundead{W:{x True or False.\n\r     {Balignment{W:{x Set alignment of the race.\n\r     {Bskin{W:{x Enter the different skin colors the race can have.\n\r     {Beyes{W:{x Enter the different eye colors the race can have.\n\r     {Bhair{W:{x Enter the different hair colors the race can have.\n\r     {Bspeed{W:{x Sets the base speed stat of the race.\n\r     {Bstats{W:{x Sets the base stats for the race. (Broken)\n\r     {Bwearlocations{W:{x Sets the wear locations.\n\r     {Bbodyparts{W:{x Sets bodyparts for race.\n\r     {W(Type help wearloc for a list of wear locations.){x\n\r\n\r{WWhen in the description buffer:{x\n\r     Please type {W.h{x while in the buffer for help regarding editing.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "raceedit"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

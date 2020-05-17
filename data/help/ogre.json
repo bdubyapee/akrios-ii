@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Ogre, Ogres{x\n\r\n\r Ogres are the brutes of the evil races. Large, strong, and stubborn they\n\rdon't hesitate to use force, in fact it is the first thing they do in any\n\rsituation. They are often used as bodyguards and physcial labor, and not\n\ralways by their choice, by powerful magical races like the Mazreki. The ogre\n\rsociety is based on strength, of course, the strongest leads and must defend\n\ris place in the hierarchy on a regular basis. Ogres dwell in tribes on the\n\rwestern plains of Akrios, although they do have a city of sorts located in\n\rthe southern plains where the strongest and smartest chieftains rules. Ogres\n\rstand 7'5\" to 9'0\". Their eyes are brown, blue, or green. Their hair is\n\rwhite, black, or brown. Their skin color ranges from pale to dark brown.\n\rMost evil races are weary when traveling with them, but prefer to take their\n\rchances with them rather than against them.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "ogre"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

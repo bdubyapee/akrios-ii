@@ -1,0 +1,12 @@
+{
+    "creator": "Jubelo",
+    "description": "\n\r{RHelp Topic{W:{x mystical\n\r\n\rThe {Bmystical{x discipline is all other things magical. All skills\n\rdealing with magic, such as using wands and brewing potions, to casting\n\rand scribing spells will be in the mystical group. Anyone wishing to create\n\ra powerful mage, rune mage, or other powerful magic type will benefit the\n\rmost from this discipline.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "mystic"
+    ],
+    "section": "player",
+    "topics": "game, rp, mythos",
+    "viewable": "true"
+}

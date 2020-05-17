@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: score{x\n\r\n\rScore gives you details about your character.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "score"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

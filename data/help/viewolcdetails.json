@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: viewolcdetails{x\n\r\n\rWhen this command is entered you may see vnums to help you in building areas.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "viewolcdetails"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

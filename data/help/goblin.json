@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Goblin, Goblins{x\n\r\n\rGoblins are wicked and untrustworthy race. They are deceitful creatures that\n\rwould stab themselves in their own back if it were possible. Goblins dwell\n\rwithin the Dread Marshes, an area of swamp land that is full of pitfalls and\n\rdeathtraps. The Dread Marshes were once said to be beautiful lush plains,\n\runtil a powerful mage came to the land. He was a sadistic and cruel man by\n\rthe name of Kaza'Dar, erecting a tower from which he performed an untold\n\rnumber of magical experiments. Through his magic he changed the earth about\n\rhis tower into the Dread Marhes and created the hateful little race known as\n\rgoblins to serve as his guardians. That was thousands of years ago, but\n\rrumors say the human mage still dwells deep within the marshes in a tower of\n\robsidian rock. The goblins, the only ones that probably know the truth,\n\rnever speak of the mage and in truth will deny ever knowing about such a\n\rman. Goblins being far from truthful are a poor source of information. This\n\rrace can be called chaotic at best. They have no real social structure and\n\ronly reside in large groups for convienance. They have a cruel sense of\n\rhumor with someone's death being the ultimate laugh. They are a short race,\n\rslender but strong for their size. They are stealthy and quick and are\n\rresistant to all kinds of poison, which is probably because they use the\n\rstuff so often. Goblins are fierce fighters that do anything to win. They\n\rstand about 4'5\" to 5'5\". They have green, brown, or yellowish skin. Their\n\reyes are black with white pupils. Their hair color ranges from black, brown,\n\rgreen, and yellow. They are not trusted by any race, although some evil\n\rraces such as the Mazreki do employ them for their abilities quite often.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "goblin"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

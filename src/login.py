@@ -15,6 +15,7 @@ import json
 import uuid
 
 import area
+import helpsys
 import livingthing
 from math_utils import dice, fuzz
 import races
@@ -45,8 +46,7 @@ class Login(object):
         self.sock = None
 
     async def greeting(self):
-        await self.sock.query_db('help', 'greet')
-        await asyncio.sleep(0.01)
+        await self.sock.dispatch(helpsys.get_help('greet', server=True))
         await self.sock.dispatch('\n\rPlease choose a character name: ', trail=False)
                 
     async def get_char_name(self, inp):
@@ -170,8 +170,7 @@ class Login(object):
             self.interp = self.character_login
             await self.interp()
         elif inp == '2':
-            await self.sock.query_db('help', 'motd')
-            await asyncio.sleep(0.01)
+            await self.sock.dispatch(helpsys.get_help('motd', server=True))
             await self.sock.dispatch('')
             await self.main_menu()
         elif inp == 'l':
@@ -207,8 +206,7 @@ class Login(object):
             newobject.write = newobject.sock.dispatch
             if not self.softboot:
                 await newobject.write("")
-                await newobject.sock.query_db('help', 'motd')
-                await asyncio.sleep(0.01)
+                await newobject.sock.dispatch(helpsys.get_help('motd', server=True))
                 await newobject.write("")
             log.info(f"{newobject.name.capitalize()} logging in from {newobject.sock.host}.")
             player.playerlist.append(newobject)
@@ -284,7 +282,7 @@ class Login(object):
         await self.sock.dispatch('')
         disciplines = ', '.join(livingthing.disciplines)
         await self.sock.dispatch(f"{{B{disciplines.title()}{{x")
-        self.sock.dishatch('Mystic Mental Physical')
+        await self.sock.dispatch('Mystic Mental Physical')
         await self.sock.dispatch('')
         
     async def get_discipline(self, inp):
@@ -297,7 +295,7 @@ class Login(object):
             self.interp = self.get_roll_stats
         elif len(inp.split()) > 1: 
             if inp.split()[0] == 'help' and inp.split()[1] in ['mystic', 'mental', 'physical']:
-                self.sock.query_db('help', inp.split()[1])
+                self.sock.dispatch(helpsys.get_help(inp.split()[1]))
                 await self.show_disciplines()
                 await self.sock.dispatch('Please choose a base discipline: ', trail=False)
         else:
@@ -339,8 +337,7 @@ class Login(object):
     async def get_roll_stats(self, inp):
         inp = inp.lower()
         if inp == 'y' or inp == 'yes':
-            await self.sock.query_db('help', 'motd')
-            await asyncio.sleep(0.01)
+            await self.sock.dispatch(helpsys.get_help('motd', server=True))
             await self.sock.dispatch('')
             newplayer = player.Player()
             newplayer.filename = f"{world.playerDir}/{self.name}.json"

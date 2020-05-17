@@ -1,0 +1,12 @@
+{
+    "creator": "Jubelo",
+    "description": "{R-{x=-=-=-=-={R-{x={R-{x=-=-=-={R-{x {BAkrios Message of the Day{x {R-{x=-=-=-=-={R-{x={R-{x=-=-=-={R-{x\n\r{WALWAYS{x Hosting Provided by {Rhttps://www.funcity.org/{x. Consider donating!\n\r{WMAR{x Flushing out objects and mobiles in preperation for their OLC addition.\n\r{WMAR{x Lots of commands cleaned up and organized.\n\r{WMAR{x Overhaul of internal handling of area, object and mobile lists.\n\r{WFEB{x Objects saving to player files in and tested.\n\r{WFEB{x Now have basic objects and mobiles working with persistance.\n\r{WFEB{x Protoype of reset system in place and tested.\n\r{W2/9/19{x Reworked livingthing and player to prepare for NPC's!!!\n\r{W2/2/19{x Improvements to OLC commands. Starting to build {WWhitestone Keep{x\n\r{W2/1/19{x Improvements to multiple commands and polishing OLC display.\n\r{W1/25/19{x Improved Grapevine restart checking and added more help files.\n\r{W1/23/19{x Updated all commands for new parser, cleaned up code in most as well.\n\r{W1/19/19{x Build Pre-Parser in command parser to consolidate input parsing per command.\n\r{W1/19/19{x Added sit/stand/sleep and additional checks and messages.\n\r{W12/28/28{x Rewrote the Help and Commands displays to look better and sort.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "motd"
+    ],
+    "section": "player",
+    "topics": "Informational",
+    "viewable": "true"
+}

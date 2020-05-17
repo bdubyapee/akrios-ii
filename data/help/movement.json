@@ -1,0 +1,22 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: movement{x\n\r\n\rTyping a direction will allow you to move to the next room in the\n\rspecified direction if there is an exit. Certain things may prohibit\n\ryou from moving in said direction such as a spell, a closed door, or\n\rthe exit may be to small for you to enter. The possible directions\n\ryou may move are: up, down, north, east, south, west, northeast,\n\rnorthwest, southeast, southwest.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "movement",
+        "north",
+        "south",
+        "east",
+        "west",
+        "up",
+        "down",
+        "northeast",
+        "northwest",
+        "southeast",
+        "southwest"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

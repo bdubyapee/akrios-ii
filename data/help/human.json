@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Human, Humans{x\n\r\n\rHumans are the most populated race on Akrios. They have numerous cities and\n\rcultures. Humans personalities and beliefs differ as much as there are\n\rhumans themselves. Humans are good and evil, selfish and caring. They are\n\rthe most versatile race in Akrios. The humans have three major cities.\n\rStormhaven, a place of religous and superstitous people that do not trust\n\rmagic and in fact have outlawed it within the city. Whitestone Keep, once a\n\rgarrison it is now a grand city but still acts as the guardian of the east.\n\rIt sits near the boundaries of The Burning Sands which is a boundery between\n\rgood and evil. Finally there is Ahaziah, filled with criminals and tyrants.\n\rThis city is located on the west coast behind the Twilight Peaks. These\n\rhumans survive with power which is the only thing the evil races respect,\n\rmore out of fear than true respect. Humans live everywhere and anywhere and\n\rall races are wary of them for they are a short lived people and are often\n\rtimes unpredictable.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "human"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

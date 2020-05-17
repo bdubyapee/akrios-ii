@@ -1,0 +1,12 @@
+{
+    "creator": "Jubelo",
+    "description": "{RHelp Topic: {Whelpedit{x <reload> / <helpfile> / <new> (newhelpword)\n\r\n\r{Whelpedit reload{x:\n\r    This will reload all help files from disk. \n\r\n\r{Whelpedit new (argument){x:\n\r    This will begin creation of a new helpfile named (argument).\n\r\n\r{Whelpedit (argument){x:\n\r    This begins editing the helpfile named argument.\n\r\n\r{WAvailable options while editing a helpfile{x:\n\r    {Bviewable{x: true or false\n\r    {Bcreator{x: The creators name\n\r    {Bkeyword{x: The keyword for this helpfile\n\r    {Btopics{x: The topics for this keyword\n\r    {Bsection{x: The section this helpfile belongs to\n\r    {Bdescription{x: This puts you in buffer edit mode for the description\n\r    {Bdone{x: This exits editing mode, saves the work and reloads help files\n\r\n\r{WWhen in the description buffer{x:\n\r     Please type {W.h{x while in the buffer for help regarding buffer editing.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "helpedit"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

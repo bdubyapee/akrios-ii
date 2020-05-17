@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: commandslist{x\n\r\n\rThis command gives you a list of commands you can use.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "commandslist"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

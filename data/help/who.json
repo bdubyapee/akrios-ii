@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: who{x\n\r\r\n\r\rWho shows you a list of people playing Akrios.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "who"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

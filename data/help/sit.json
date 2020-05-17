@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "\n\r{RHelp Topic{W: sit{x\n\r\n\rThe {Wsit{x command is utilized to make your character sit down and rest.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "sit"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

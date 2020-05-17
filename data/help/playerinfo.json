@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "\n\r{RHelp Topic{W: playerinfo{x\n\r\n\rThe {Wplayerinfo{x command allows you to see IP address and other\n\rinformation about a player.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "playerinfo"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

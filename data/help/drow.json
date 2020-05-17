@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "Drow are related closely to elves, having the same features and build. Other\n\rthan that though drow are different from elves in every way. They make their\n\rhome underground in a labrinth of tunnels and catacombs known as The Black\n\rPits. They are a cunning race that excel at magic and stealth. They are dark\n\rskinned with white hair, and red or violet eyes. Drow and elves are mortal\n\renemies and will not hesitate to kill one another on sight.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "drow"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

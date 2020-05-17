@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: title{x <argumemnt>\n\r\n\r{Wtitle <argument>:{x\n\r     This sets your title to display in the 'who'.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "title"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

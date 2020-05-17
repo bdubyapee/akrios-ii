@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Aroch, Arochs{x\n\r\n\rArochs are a nomadic, barbarian people that dwell within the great\n\rdesert known as The Burning Sands. They are a vicious people and are\n\rconsidered the toughest race in all of Akrios, suiting their name to a tee\n\rfor they are a people rough and hard like rocks. Their most recognizable\n\rtrait being their two extra arms, four total, and they have learned how to\n\ruse these extra appendages to their fullest extent in combat. Be it dualing\n\rfour weapons or just using their bare hands combined with their unique\n\rmartial arts, they can overwhelm a single opponent quite quickly, even two\n\ror three opponents rarely makes these people break a sweat. Arochs are\n\rdesert raiders, attacking any caravan that dares to enter The Burning Sands\n\rand often raiding small towns and villages that reside on the outskirts of\n\rthe great desert. Many people consider The Burning Sands a death trap, and\n\rit is, rarely does a man enter the desert and is ever seen again. Arochs\n\rhave thick tough skin that is as good if not better than leather armor, most\n\rlikely from being out in the sun all of their lives. They rarely wear armor,\n\rseeing has how it is hot and nonflexible. It is rare indeed to see any armor\n\rmade for the four armed desert people. Arochs are dark skined, with brown or\n\rblack hair, and brown eyes. They are usually quite muscular and range in\n\rheight about 5'11\" to 6'7\". They are not very well mannered, and are quick\n\rto anger. They are vicious and have little mercy if any at all. There are\n\rfew outside their race that can tolerate them and be tolerated back. They\n\rare also a very religious people and quite wise in the ways of life.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "aroch"
+    ],
+    "section": "player",
+    "topics": "races",
+    "viewable": "true"
+}

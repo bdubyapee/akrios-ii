@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: areastats{x\n\r\n\rThis command will give that stats and a list of rooms for the area\n\ryou are currently in.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "areastats"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

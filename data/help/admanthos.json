@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Admanthos{x\n\r\n\rAdmanthos is the God of Magic. He is rumored be the source of all things\n\rmagical, which is why mages are frowned upon and are even outlawed in some\n\rparts of the world. Admanthos can be quite ruthless and seems to be bent on\n\rsubjugating the world. He is rumored to own powerful spells that no mortal\n\rcould ever learn or control. Many think that magic is the life force of the\n\rplanet and by using it admanthos and his followers are slowly killing the\n\rworld. Admanthos and his followers are also known for their use of\n\rnecromancy, making them Nephiums number one rivals. Selucia also thinks\n\rmagic is unnatural so she is also fighting Admanthos and his minions.\n\rAdmanthos' followers specialize in necromancy. Most mages are also followers\n\rof Admanthos.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "admanthos"
+    ],
+    "section": "player",
+    "topics": "deities",
+    "viewable": "true"
+}

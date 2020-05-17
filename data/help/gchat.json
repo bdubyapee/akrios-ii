@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "{RHelp Topic{W: gchat {x\n\r\n\r{Wgchat{x <channel> <argument>\n\r     This will print the <argument> on the gchat <channel>.\n\r\n\rgchat is used to communicate over the grapevine.haus MultiMUD chat network.\n\r\n\rYou can toggle this channel off and on by using the {Wtoggle{x command.\n\r",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "gchat"
+    ],
+    "section": "player",
+    "topics": "channels",
+    "viewable": "true"
+}

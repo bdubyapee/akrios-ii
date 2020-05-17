@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Exitedit{x <direction> / new <direction> <vnum>\n\r\n\r{Wexitedit new <direction> <vnum>{x\n\r     Creates a new exit in the specified (direction) from the\n\r     room you are currently in to the specified room of (vnum).\n\r\n\r{Wexitedit <direction>{x\n\r     This allows you to set the parimeters of the specified exit.\n\r\n\r{WAvailable options while in exitedit:{x\n\r     {BLocked{W:{x True or false.\n\r     {BLock difficulty{W:{x Set the difficulty for picking this lock.\n\r     {BKey vnum{W:{x Enter the vnum of the object that unlocks this door.\n\r     {BMagic locked{W:{x True or false.\n\r     {BMagic lock difficulty{W:{x Set the difficulty of dispelling the spell\n\r                            blocking this exit.\n\r     {BPhysical difficulty{W:{x Set the difficulty for opening the exit\n\r                          with physical skills like doorbash.\n\r     {BSize{W:{x vast, huge, large, medium, small, tiny and miniscule..\n\r     {BKeywords{W:{x Words the player can type to examine the exit.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "exitedit"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

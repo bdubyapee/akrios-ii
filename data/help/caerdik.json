@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Caerdik{x\n\r\n\rCaerdik is the God of Orde. He is a firm believer in enforcing law and\n\rorder, almost to a fault. He can be quite thick headed and stubborn, and is\n\rquick to anger. He is though, usually quite fair and just, even if he is a\n\rbit emotional. He respects Aludra and Nephium, but is somewhat wary of\n\rSelucia because of her unpredictability. His mortal enemy is Sirian, and he\n\rdetests Myst who seems to flirt with him just because she knows it upsets\n\rhim. He also does not get along with Malyki, though he doesn't seem to know\n\rwhy. Most likely because they are two sides of the same coin. Caerdik's\n\rfollowers are usually those who enforce the law or at least believe in it.\n\rTheir spells usually consist of righteous attack and protective spells. They\n\rare usually very handy in a fight.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "caerdik"
+    ],
+    "section": "player",
+    "topics": "deities",
+    "viewable": "true"
+}

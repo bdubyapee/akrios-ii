@@ -26,9 +26,9 @@ class Atomic(object):
     def __init__(self):
         super().__init__()
         self.alias = {}
-        self.building = None
+        # self.building = None
         self.capability = []
-        self.editing = None
+        # self.editing = None
         self.location = None
         self.last_input = 0
         self.name = ''

@@ -1,0 +1,12 @@
+{
+    "creator": "jubelo",
+    "description": "{RHelp Topic{W:{x discipline\n\r\n\r Disciplines will be a substitute for classes and then again not. Like\n\rclasses they determine which direction, skill-wise, a player wishes to take\n\rtheir character, but unlike classes they have no restrictions on what skills\n\rone can obtain. In other words at creation when a person chooses their\n\rdiscipline, they must think about what type of character they are wanting to\n\rplay. Do they want a fighter, thief, monk, priest, psionisist, mage, or\n\rperhaps a combination of the two or three or more. A player will have to\n\rchoose the discipline that they believe will be most helpful for their\n\rcharacter.\n\r\n\r There are four disciplines, they are: Physical, Mental, Divine,\n\rand Mystical. All skills and spells will be divided up into these four\n\rcatagories. Learning a skill from your discipline will not be to big of\n\rdeal, but learning skills from outside your discipline will require more\n\rskill points. Which in return will cut down on the number of skills you can\n\rlearn.\n\r\n\rThe {Bphysical{x discipline deals with physical skills of course.\n\rMartial arts, weapons, and thief skills will all be apart of the\n\rphysical group. Anyone who wishes to create a rogue or fighter type\n\rcharacter will be best off choosing this discipline.\n\r\n\rThe {Bmental{x discipline deals with mental abilities of the mind.\n\rPsionics is the major lump of skills for this group, although a few other\n\rskills like meditation will be a part of this discipline as well.\n\rAnyone wishing to create a powerful psionic type will need this discipline.\n\r\n\rThe {Bdivine{x discipline is based around deities and religion. Any skill\n\rgranted to players by a deity is in this group, as always there may be\n\ra few exceptions. Players wishing to play a priest or other religious\n\rfanatic type will benefit the most from this discipline.\n\r\n\rThe {Bmystical{x discipline is all other things magical. All skills\n\rdealing with magic, such as using wands or brewing potions, to casting and\n\rscribing spells will be in the mystical group. Anyone wishing to create a\n\rpowerful mage, rune mage, or other powerful magic type will definately need\n\rthis discipline.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "discipline"
+    ],
+    "section": "player",
+    "topics": "game, rp, mythos",
+    "viewable": "true"
+}

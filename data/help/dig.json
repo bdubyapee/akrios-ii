@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Dig{x\n\r\n\r{Wdig <direction> <vnum>{x\n\r     This will create a new room with the vnum of (vnum). It\n\r     also creates a two way exit in the specified (direction).\n\r     The exits will be set to default and will need extra\n\r     values such as doors and exit sizes set.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "dig"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

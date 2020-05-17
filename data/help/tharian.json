@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Tharian{x\n\r\n\rTharian is the God of Balance. He believes that all things must stay in\n\rbalance with each other, which is a simplisic concept, but not so simple to\n\ruphold. Tharian and his followers are an enigma at best, they might help you\n\rone moment than turn on you the next all depending on what they think needs\n\rto be balanced. Tharian is known to ally himself with and against all the\n\rother deities, which doesn't make him any friends amoung his peers. They all\n\rput up with him though because they know that if he is helping them, than it\n\rmeans that they need the help even if they don't know it at the time.\n\rTharian's followers are known to be on both sides of most conflicts and even\n\rthough they might be fighting on opposite sides of a battle they will never\n\rfight each other. Tharian does not like or dislike any of the deities, and\n\rmost of them don't seem to care one way or the other about him. Tharian's\n\rfollowers don't really specialize in any sphere of magic, but take a little\n\rbit from all.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "tharian"
+    ],
+    "section": "player",
+    "topics": "deities",
+    "viewable": "true"
+}

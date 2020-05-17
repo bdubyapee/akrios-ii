@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: quit{x\n\r\n\rThe {Wquit{x command allows you to exit the game at your current\n\rlocation.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "quit"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: raceslist{x\n\r\n\rThis gives you a list of all races currently in the game. Both playable\n\rand nonplayable.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "raceslist"
+    ],
+    "section": "builder",
+    "topics": "builder",
+    "viewable": "true"
+}

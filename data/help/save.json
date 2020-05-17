@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: save{x\n\r\n\rSave saves your character. The MUD saves automatically, but it never\n\rhurts to save yourself once in a while.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "save"
+    ],
+    "section": "player",
+    "topics": "commands",
+    "viewable": "true"
+}

@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: Selucia{x\n\r\n\rSelucia is the Goddess of Nature. Mother nature so to speak. She's into\n\rtrees and animals, and not a big fan of the humanoid races that encroach on\n\rher territory. The elves are her favorite of the humanoids and she definitly\n\rfavors them. She is not a big fan of industrious people and believes that\n\rtechnology and civilization are evil. She gets along well with Aludra\n\rand Nephium. Myst is her rival when it comes to men, although they do get\n\ralong on occasion. She hates Admanthos and does not like Malyki. Selucia's\n\rfollowers gain many nature based spells, things that let them manipulate and\n\rcommunicate with nature.",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "selucia"
+    ],
+    "section": "player",
+    "topics": "deities",
+    "viewable": "true"
+}
