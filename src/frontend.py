@@ -200,7 +200,7 @@ async def msg_gen_game_softboot(wait_time=10):
            'secret': FRONT_END,
            'payload': payload}
 
-    asyncio.create_task(messages_to_frontend.put((json.dumps(msg, sort_keys=True, indent=4))))
+    await messages_to_frontend.put((json.dumps(msg, sort_keys=True, indent=4)))
 
 
 async def msg_gen_player_do_client_echo(uuid_):

@@ -306,6 +306,17 @@ async def main() -> None:
     log.info('After waiting on engine tasks.')
     log.info(f'Completed task is:\n\n{completed}\n\n')
 
+    player_quit = 'quit force'
+
+    if status.server['softboot']:
+        log.info('Softboot has been executed')
+        await frontend.msg_gen_game_softboot(wait_time=2)
+        player_quit = 'quit force no_notify'
+
+    for each_player in sessions.values():
+        await each_player.owner.interp(player_quit)
+        await each_player.handle_close()
+
 
 if __name__ == '__main__':
     log.info('Starting Akrios.')
@@ -343,20 +354,5 @@ if __name__ == '__main__':
     try:
         loop.run_until_complete(main())
     finally:
-        player_quit = 'quit force'
-
-        if status.server['softboot']:
-            log.info('Softboot has been executed')
-            asyncio.create_task(frontend.msg_gen_game_softboot(wait_time=1))
-            player_quit = 'quit force no_notify'
-
-        # server.Server.done has been set to True
-        for each_player in sessions.values():
-            asyncio.gather(each_player.owner.interp(player_quit))
-            asyncio.gather(each_player.handle_close())
-
-        for each_task in asyncio.all_tasks():
-            each_task.cancel()
-
         log.info('Akrios shutdown.')
         loop.close()
