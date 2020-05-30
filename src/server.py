@@ -70,9 +70,12 @@ class Session(object):
     async def grapevine_logout(self):
         asyncio.create_task(grapevine.msg_gen_player_logout(self.owner.name))
 
-    async def handle_close(self):
-        await frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session)
-        await grapevine.msg_gen_player_logout(self.owner.name)
+    async def handle_close(self, message=""):
+        log.info(f'performing handle_close, message is: {message}')
+        if message != 'softboot':
+            log.info(f'handle_close: logging {self.owner.name.capitalize()} out of Grapevine and Front end.')
+            await frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session)
+            await grapevine.msg_gen_player_logout(self.owner.name)
         self.state['connected'] = False
         self.state['logged in'] = False
         for tasks in asyncio.all_tasks():
@@ -159,16 +162,14 @@ async def shutdown_or_softboot():
 
     if message == 'softboot':
         log.info('Softboot has been executed')
-        await frontend.msg_gen_game_softboot(wait_time=2)
+        await frontend.msg_gen_game_softboot(wait_time=0.5)
         player_quit = 'quit force no_notify'
 
     for each_player in sessions.values():
         log.debug('Looping over all players and force quitting')
         await each_player.owner.interp(player_quit)
-        await each_player.handle_close()
 
     log.debug('Sleeping the shutdown_or_softboot Task')
-    await asyncio.sleep(1)
     status.server['running'] = False
 
 

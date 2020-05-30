@@ -178,7 +178,7 @@ class Login(object):
             log.info(f"{self.sock.host} disconnecting from Akrios.")
             asyncio.create_task(self.sock.handle_close())
         elif inp == 'l no_notify':
-            asyncio.create_task(self.sock.handle_close())
+            asyncio.create_task(self.sock.handle_close('softboot'))
         elif inp == 'd':
             await self.sock.dispatch('Sorry to see you go.  Come again soon!')
             log.info(f"Character {self.name} deleted by {self.sock.host}")
@@ -202,7 +202,7 @@ class Login(object):
             log.info(f'newobj.sock.owner = {newobject.sock.owner}')
             newobject.sock.promptable = True
             newobject.sock.state['logged in'] = True
-            log.info(f'newobject.sock.state is not : {newobject.sock.state}')
+            log.info(f'newobject.sock.state is : {newobject.sock.state}')
             newobject.write = newobject.sock.dispatch
             if not self.softboot:
                 await newobject.write("")

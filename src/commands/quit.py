@@ -48,7 +48,8 @@ async def quit(caller, args, **kwargs):
 
     conn.sock = testsock
     conn.sock.owner = conn
-    await conn.main_menu()
+    if 'force' not in args:
+        await conn.main_menu()
     # Linkdeath/timeout will force a quit.  Test for that below so we remove
     # them completely from the game and don't leave them stuck at the menu.
     if args == "force":
