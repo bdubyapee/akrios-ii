@@ -104,7 +104,7 @@ class Session(object):
                 msg = color.colorize(msg)
             else:
                 msg = color.decolorize(msg)
-            await self.out_buf.put(msg)
+            await self.out_buf.put((msg, "false"))
 
     async def send_prompt(self):
         if self.state['logged in']:
@@ -116,12 +116,12 @@ class Session(object):
                 else:
                     pretext = ''
                 output = color.colorize(f'\n\r{pretext}{self.owner.prompt}\n\r')
-                await self.out_buf.put(output)
+                await self.out_buf.put((output, "true"))
 
     async def send(self):
         while self.state['connected']:
-            message = await self.out_buf.get()
-            asyncio.create_task(frontend.msg_gen_player_output(message, self.session))
+            message, is_prompt = await self.out_buf.get()
+            asyncio.create_task(frontend.msg_gen_player_output(message, self.session, is_prompt))
 
     async def read(self):
         while self.state['connected']:

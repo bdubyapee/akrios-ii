@@ -137,12 +137,13 @@ async def connect() -> None:
 
 # Below are helper coroutines to send specific things to the front end.
 
-async def msg_gen_player_output(msg, session_uuid):
+async def msg_gen_player_output(msg, session_uuid, is_prompt):
     """
     Send output text to a client
     """
     payload = {'message': msg,
-               'uuid': session_uuid}
+               'uuid': session_uuid,
+               'is prompt': is_prompt}
     msg = {'event': 'players/output',
            'secret': FRONT_END,
            'payload': payload}
@@ -201,6 +202,19 @@ async def msg_gen_game_softboot(wait_time=10):
            'payload': payload}
 
     await messages_to_frontend.put((json.dumps(msg, sort_keys=True, indent=4)))
+
+
+async def msg_gen_player_do_ga(uuid_):
+    """
+    Notify the front end to send a 'go ahead' to telnet/MUD clients.
+    """
+    payload = {'command': 'do ga',
+               'uuid': uuid_}
+    msg = {'event': 'player/session command',
+           'secret': FRONT_END,
+           'payload': payload}
+
+    asyncio.create_task(messages_to_frontend.put((json.dumps(msg, sort_keys=True, indent=4))))
 
 
 async def msg_gen_player_do_client_echo(uuid_):
