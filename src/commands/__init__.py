@@ -296,6 +296,10 @@ class Command(object):
                             return
                 
             try:
+                log.debug(f"! Calling command !")
+                log.debug(f"Caller: {caller.name}")
+                log.debug(f"args_: {args_}")
+                log.debug(f"**kwargs: {kwargs}")
                 await command(caller, args_, **kwargs_)
             except Exception as err:
                 to_log = (f"Error in command execution:\n\r"

@@ -36,6 +36,8 @@ sessions = {}
 # Assistant variables for removing certain characters from our input.
 valid_chars = string.printable.replace(string.whitespace[1:], "")
 
+server_shutdown = asyncio.Queue()
+
 
 class Session(object):
     def __init__(self, uuid, address, port):
@@ -147,6 +149,29 @@ async def shutdown(signal_: signal.Signals, loop_: asyncio.AbstractEventLoop) ->
 
     await asyncio.gather(*tasks, return_exceptions=True)
     loop_.stop()
+
+
+async def shutdown_or_softboot():
+    log.debug('Initial launch of shutdown_or_softboot Task')
+
+    log.debug('Inside while loop of server running, awaiting message from queue')
+    message = await server_shutdown.get()
+    log.debug(f'RECEIVED server_shutdown queue message of : {message}')
+    player_quit = 'quit force'
+
+    if message == 'softboot':
+        log.info('Softboot has been executed')
+        await frontend.msg_gen_game_softboot(wait_time=2)
+        player_quit = 'quit force no_notify'
+
+    for each_player in sessions.values():
+        log.debug('Looping over all players and force quitting')
+        await each_player.owner.interp(player_quit)
+        await each_player.handle_close()
+
+    log.debug('Sleeping the shutdown_or_softboot Task')
+    await asyncio.sleep(1)
+    status.server['running'] = False
 
 
 def handle_exception_generic(loop_: asyncio.AbstractEventLoop, context: Dict) -> None:
@@ -297,6 +322,7 @@ async def main() -> None:
              asyncio.create_task(handle_commands(), name='server-commands'),
              asyncio.create_task(handle_messages(), name='server-messages'),
              asyncio.create_task(handle_grapevine_messages(), name='grapevine'),
+             asyncio.create_task(shutdown_or_softboot(), name='shutdown-or-softboot'),
              ]
 
     log.info('Created engine task list')
@@ -305,17 +331,6 @@ async def main() -> None:
 
     log.info('After waiting on engine tasks.')
     log.info(f'Completed task is:\n\n{completed}\n\n')
-
-    player_quit = 'quit force'
-
-    if status.server['softboot']:
-        log.info('Softboot has been executed')
-        await frontend.msg_gen_game_softboot(wait_time=2)
-        player_quit = 'quit force no_notify'
-
-    for each_player in sessions.values():
-        await each_player.owner.interp(player_quit)
-        await each_player.handle_close()
 
 
 if __name__ == '__main__':

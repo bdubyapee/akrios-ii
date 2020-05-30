@@ -3,4 +3,3 @@ server = {'running': True,
 frontend = {'connected': False}
 grapevine = {'connected': True,
              'authenticated': False}
-db = {'connected': False}

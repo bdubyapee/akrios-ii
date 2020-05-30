@@ -11,6 +11,7 @@
 # By: Jubelo
 
 from commands import *
+import server
 
 name = "softboot"
 version = 1
@@ -28,5 +29,4 @@ async def softboot(caller, args, **kwargs):
             await caller.write(f"{each_player.disp_name} is Building right now! No Softboot for you!")
             return
 
-    status.server['running'] = False
-    status.server['softboot'] = True
+    asyncio.create_task(server.server_shutdown.put('softboot'))
