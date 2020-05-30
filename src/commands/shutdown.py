@@ -11,7 +11,6 @@
 # By: Jubelo
 
 from commands import *
-import server
 
 name = "shutdown"
 version = 1
@@ -30,4 +29,4 @@ async def shutdown(caller, args, **kwargs):
             await caller.write(f"{each_player.disp_name} is Building right now! No Shutdown for you!")
             return
     log.debug('shutdown command just before awaiting put to queue.')
-    asyncio.create_task(server.server_shutdown.put('shutdown'))
+    asyncio.create_task(status.server_shutdown.put('shutdown'))

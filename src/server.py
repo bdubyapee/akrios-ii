@@ -36,8 +36,6 @@ sessions = {}
 # Assistant variables for removing certain characters from our input.
 valid_chars = string.printable.replace(string.whitespace[1:], "")
 
-server_shutdown = asyncio.Queue()
-
 
 class Session(object):
     def __init__(self, uuid, address, port):
@@ -155,7 +153,7 @@ async def shutdown_or_softboot():
     log.debug('Initial launch of shutdown_or_softboot Task')
 
     log.debug('Inside while loop of server running, awaiting message from queue')
-    message = await server_shutdown.get()
+    message = await status.server_shutdown.get()
     log.debug(f'RECEIVED server_shutdown queue message of : {message}')
     player_quit = 'quit force'
 
@@ -322,7 +320,7 @@ async def main() -> None:
              asyncio.create_task(handle_commands(), name='server-commands'),
              asyncio.create_task(handle_messages(), name='server-messages'),
              asyncio.create_task(handle_grapevine_messages(), name='grapevine'),
-             asyncio.create_task(shutdown_or_softboot(), name='shutdown-or-softboot'),
+             asyncio.create_task(shutdown_or_softboot(), name='shutdown-or-softboot')
              ]
 
     log.info('Created engine task list')
@@ -363,8 +361,6 @@ if __name__ == '__main__':
     helpsys.init()
     races.init()
     asyncio.gather(area.init())
-
-    status.server['running'] = True
 
     try:
         loop.run_until_complete(main())
