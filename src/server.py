@@ -222,10 +222,10 @@ async def cmd_grapevine_tells_send(message):
     caller, target, game, error_msg = message
     message = (f'\n\r{{GGrapevine Tell to {{y{target}@{game}{{G '
                f'returned an Error{{x: {{R{error_msg}{{x')
-    for eachplayer in player.playerlist:
-        if eachplayer.disp_name == caller:
-            if eachplayer.oocflags_stored['grapevine'] == 'true':
-                await eachplayer.write(message)
+    for each in player.playerlist:
+        if each.disp_name == caller:
+            if each.oocflags_stored['grapevine'] == 'true':
+                await each.write(message)
                 return
 
 
@@ -233,10 +233,10 @@ async def cmd_grapevine_tells_receive(message):
     sender, target, game, sent, message = message
     message = (f'\n\r{{GGrapevine Tell from {{y{sender}@{game}{{x: '
                f'{{G{message}{{x.\n\rReceived at : {sent}.')
-    for eachplayer in player.playerlist:
-        if eachplayer.disp_name == target.capitalize():
-            if eachplayer.oocflags_stored['grapevine'] == 'true':
-                await eachplayer.write(message)
+    for each in player.playerlist:
+        if each.disp_name == target.capitalize():
+            if each.oocflags_stored['grapevine'] == 'true':
+                await each.write(message)
                 return
 
 
@@ -247,8 +247,8 @@ async def cmd_grapevine_games_connect(message):
     if message != '':
         grape_enabled = [players for players in player.playerlist
                          if players.oocflags_stored['grapevine'] == 'true']
-        for eachplayer in grape_enabled:
-            await eachplayer.write(message)
+        for each in grape_enabled:
+            await each.write(message)
 
 
 async def cmd_grapevine_games_disconnect(message):
@@ -257,8 +257,8 @@ async def cmd_grapevine_games_disconnect(message):
     if message != '':
         grape_enabled = [players for players in player.playerlist
                          if players.oocflags_stored['grapevine'] == 'true']
-        for eachplayer in grape_enabled:
-            await eachplayer.write(message)
+        for each in grape_enabled:
+            await each.write(message)
 
 
 async def cmd_grapevine_channels_broadcast(message):
@@ -272,9 +272,9 @@ async def cmd_grapevine_channels_broadcast(message):
     if message != '':
         grape_enabled = [players for players in player.playerlist
                          if players.oocflags_stored['grapevine'] == 'true']
-        for eachplayer in grape_enabled:
-            if channel in eachplayer.oocflags['grapevine_channels']:
-                await eachplayer.write(message)
+        for each in grape_enabled:
+            if channel in each.oocflags['grapevine_channels']:
+                await each.write(message)
 
 
 async def cmd_grapevine_player_login(message):
@@ -282,8 +282,8 @@ async def cmd_grapevine_player_login(message):
 
     grape_enabled = [players for players in player.playerlist
                      if players.oocflags_stored['grapevine'] == 'true']
-    for eachplayer in grape_enabled:
-        await eachplayer.write(msg)
+    for each in grape_enabled:
+        await each.write(msg)
 
 
 async def cmd_grapevine_player_logout(message):
@@ -291,8 +291,8 @@ async def cmd_grapevine_player_logout(message):
 
     grape_enabled = [players for players in player.playerlist
                      if players.oocflags_stored['grapevine'] == 'true']
-    for eachplayer in grape_enabled:
-        await eachplayer.write(msg)
+    for each in grape_enabled:
+        await each.write(msg)
 
 
 async def handle_grapevine_messages() -> None:
@@ -330,6 +330,9 @@ async def main() -> None:
 
     log.info('After waiting on engine tasks.')
     log.info(f'Completed task is:\n\n{completed}\n\n')
+
+    for task in pending:
+        task.cancel()
 
 
 if __name__ == '__main__':
