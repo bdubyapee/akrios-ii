@@ -215,10 +215,10 @@ class Login(object):
             newobject.logpath = os.path.join(world.logDir, f"{newobject.name}.log")
             if newobject.position == "sleeping":
                 await newobject.write("You are sleeping.")
-            else:
+            elif not self.softboot:
                 await newobject.interp("look")
             if self.softboot:
-                await newobject.write('')
+                # await newobject.write('')
                 await newobject.write('Something feels different.')
             await newobject.sock.grapevine_login()
             await newobject.sock.fe_login_successful()
