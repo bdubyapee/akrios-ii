@@ -1,0 +1,12 @@
+{
+    "creator": "belial",
+    "description": "{RHelp Topic{W: softboot{x\n\r\n\rRestarts the game engine without dropping player connections",
+    "json_class_name": "__Help__",
+    "json_version": 1,
+    "keywords": [
+        "softboot"
+    ],
+    "section": "admin",
+    "topics": "administrative",
+    "viewable": "true"
+}
