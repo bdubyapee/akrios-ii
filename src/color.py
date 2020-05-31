@@ -45,7 +45,7 @@ color_table = {"{x": "0;0m",  # Clear back to white on black
                '{bW': '1;47m'}  # Set background color to bright white
 
 
-def colorize(text) -> str:
+def colorize(text):
     if "{" in text:
         for item, code in color_table.items():
             text = text.replace(item, f"\x1b[{code}")
@@ -54,7 +54,7 @@ def colorize(text) -> str:
         return text
 
 
-def decolorize(text) -> str:
+def decolorize(text):
     if "{" in text:
         for item in color_table.keys():
             text = text.replace(item, "")

@@ -254,5 +254,5 @@ class Object(atomic.Atomic, olc.Editable):
                     comm_ = f"wear {self.keywords[0]} on {self.default_wear_loc}"
                     await target_location.interp(comm_)
 
-    def write(self, args):
+    async def write(self, args):
         log.debug(f"Received object[{self.vnum}] command write of: {args}")

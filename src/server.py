@@ -104,7 +104,7 @@ class Session(object):
             if trail:
                 msg = f'{msg}\n\r'
             if self.ansi:
-                msg = color.colorize(msg)
+                msg = color.colorize(f'{msg}{{x')
             else:
                 msg = color.decolorize(msg)
             await self.out_buf.put((msg, "false"))
@@ -118,7 +118,7 @@ class Session(object):
                     pretext = '{W[{RAFK{W]{x '
                 else:
                     pretext = ''
-                output = color.colorize(f'\n\r{pretext}{self.owner.prompt}')
+                output = color.colorize(f'\n\r{pretext}{self.owner.prompt}{{x')
                 await self.out_buf.put((output, "true"))
 
     async def send(self):

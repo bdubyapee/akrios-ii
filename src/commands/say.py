@@ -25,8 +25,8 @@ async def say(caller, args, **kwargs):
     target_list = kwargs['target']
     message = kwargs['post']
        
-    await caller.write(f"\n\r{{cYou say, '{message[:300]}'{{x.")
+    await caller.write(f"\n\r{{cYou say, '{message[:300]}'")
 
     for person in target_list:
         if person != caller:
-            await person.write(f"\n\r\n\r{{c{caller.disp_name} says, '{message[:300]}'{{x.")
+            await person.write(f"\n\r\n\r{{c{caller.disp_name} says, '{message[:300]}'")
