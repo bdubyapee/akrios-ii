@@ -37,5 +37,5 @@ async def ooc(caller, args, **kwargs):
         else:
             name_ = caller.disp_name
             plural = 's'
-            name_ = '\n\r' + name_
+            name_ = '' + name_
         await person.write(f"{{B{name_} OOC{plural}: '{args_[:300]}'")

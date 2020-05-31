@@ -23,8 +23,8 @@ requirements = {'capability': ['player'],
 async def look(caller, args, **kwargs):
     if caller.location != 0 and len(args) <= 0:
         if caller.is_player and caller.oocflags['viewOLCdetails'] is True:
-            namepretext = f"{{W[{{xVNUM: {{B{caller.location.vnum}{{W]{{x "
-            name_ = f"{namepretext}{{B{caller.location.name}{{x"
+            namepretext = f"{{W[{{xVNUM: {{p{caller.location.vnum}{{W]{{x "
+            name_ = f"{namepretext}{{p{caller.location.name}{{x"
             theexits = []
             for key in caller.location.exits:
                 destination = caller.location.exits[key].destination
@@ -32,7 +32,7 @@ async def look(caller, args, **kwargs):
                 theexits.append(f"{{C{key} {{W[{{xVNUM: {{B{destination}{{W] [{{G{size}{{W]{{x ")
             theexits = ', '.join(theexits)
         else:
-            name_ = f"{{B{caller.location.name}{{x"
+            name_ = f"{{p{caller.location.name}{{x"
             theexits = ', '.join(caller.location.exits)
 
         desc = f"   {caller.location.description}"
@@ -41,9 +41,9 @@ async def look(caller, args, **kwargs):
         if theexits == '':
             theexits = 'none'
 
-        await caller.write(f"\n\r{name_}")
-        await caller.write(f"{desc}\n")
-        await caller.write(f"{{Y[{{GExits: {{B{theexits}{{Y]{{x")
+        await caller.write(f"{name_}")
+        await caller.write(f"{desc}")
+        await caller.write(f"{{Y[{{GExits: {{p{theexits}{{Y]{{x")
         for thing in things:
             if thing is not caller and thing.name:
                 if thing.is_player and thing.oocflags['afk'] == True:
@@ -54,7 +54,7 @@ async def look(caller, args, **kwargs):
                 if thing.is_player or thing.is_mobile:
                     await caller.write(f"   {pretext} {thing.disp_name} is {thing.position} here.")
                 else:
-                    await caller.write(f"   {pretext} {thing.disp_name} is here.")
+                    await caller.write(f"        {pretext} {thing.disp_name} is here.")
               
     elif len(args) > 0:
         # Is it a room extra description?

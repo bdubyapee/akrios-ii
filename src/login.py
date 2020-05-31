@@ -218,7 +218,7 @@ class Login(object):
             elif not self.softboot:
                 await newobject.interp("look")
             if self.softboot:
-                await newobject.write('Something feels different.')
+                await newobject.write('\n\rSomething feels different.')
             await newobject.sock.grapevine_login()
             await newobject.sock.fe_login_successful()
             newobject.lasttime = time.ctime()

@@ -60,7 +60,7 @@ async def who(caller, args, **kwargs):
     await caller.write("\n\r")
 
     if len(args) <= 0 and grapevine.other_games_players:
-        await caller.write("{BOther realms on the Grapevine network{x:")
+        await caller.write("{pOther realms on the Grapevine network{x:")
         await caller.write("")
         game_data = [f"{{R{k}{{x: {{W{len(v) or 0}{{x  " for k, v in grapevine.other_games_players.items()]
         game_data.sort()
