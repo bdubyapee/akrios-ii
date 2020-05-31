@@ -58,5 +58,3 @@ async def quit(caller, args, **kwargs):
         await conn.main_menu_get_option('l no_notify')
     else:
         conn.interp = conn.main_menu_get_option
-
-

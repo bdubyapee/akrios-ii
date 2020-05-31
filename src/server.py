@@ -118,7 +118,7 @@ class Session(object):
                     pretext = '{W[{RAFK{W]{x '
                 else:
                     pretext = ''
-                output = color.colorize(f'\n\r{pretext}{self.owner.prompt}\n\r')
+                output = color.colorize(f'\n\r{pretext}{self.owner.prompt}')
                 await self.out_buf.put((output, "true"))
 
     async def send(self):
