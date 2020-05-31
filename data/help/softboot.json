@@ -1,5 +1,5 @@
 {
-    "creator": "belial",
+    "creator": "jubelo",
     "description": "{RHelp Topic{W: softboot{x\n\r\n\rRestarts the game engine without dropping player connections",
     "json_class_name": "__Help__",
     "json_version": 1,
