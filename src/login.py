@@ -155,7 +155,7 @@ class Login(object):
             self.interp = self.get_race
                         
     async def main_menu(self):
-        await self.sock.dispatch('{BWelcome to Akrios{x\n'
+        await self.sock.dispatch('{pWelcome to Akrios{x\n'
                                  '-=-=-=====-=-=-\n'
                                  '1) Login your character\n'
                                  '2) View the Message of the Day\n'

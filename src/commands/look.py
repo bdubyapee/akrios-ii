@@ -43,7 +43,7 @@ async def look(caller, args, **kwargs):
 
         await caller.write(f"{name_}")
         await caller.write(f"{desc}")
-        await caller.write(f"{{Y[{{GExits: {{p{theexits}{{Y]{{x")
+        await caller.write(f"{{Y[{{GExits: {{p{theexits}{{Y]{{x\n\r")
         for thing in things:
             if thing is not caller and thing.name:
                 if thing.is_player and thing.oocflags['afk'] == True:
@@ -101,7 +101,7 @@ async def look(caller, args, **kwargs):
                         preface = "worn around "
                     each_loc = f"{preface}{each_loc}"
 
-                    await caller.write(f"  <{each_loc:22}>   {eq_name:40}")
+                    await caller.write(f"      <{each_loc:22}>   {eq_name:40}")
             await caller.write("")
             return
 

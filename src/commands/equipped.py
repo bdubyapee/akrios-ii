@@ -41,6 +41,6 @@ async def equipped(caller, args, **kwarg):
             preface = "worn around "
         each_loc = f"{preface}{each_loc}"
 
-        await caller.write(f"  <{each_loc:22}>   {eq_name:40}")
+        await caller.write(f"      <{each_loc:22}>   {eq_name:40}")
 
     await caller.write("")

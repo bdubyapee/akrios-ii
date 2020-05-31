@@ -34,7 +34,7 @@ async def inventory(caller, args, **kwarg):
 
     for aid, object_ in caller.contents.items():
         if aid not in caller.equipped.values():
-            await caller.write(f"{object_.disp_name:45}")
+            await caller.write(f"       {object_.disp_name:45}")
             inventory_ += 1
 
     if inventory_ == 0:
