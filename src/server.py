@@ -55,33 +55,62 @@ class Session(object):
         asyncio.create_task(self.send(), name=self.session)
 
     async def fe_login_failed(self):
+        """
+        Let the front end know that this session failed to login (authenticate).
+        """
         asyncio.create_task(frontend.msg_gen_player_login_failed(self.owner.name, self.session))
 
     async def fe_login_successful(self):
+        """
+        Let the front end know that this session authenticated successfully.
+        """
         asyncio.create_task(frontend.msg_gen_player_login(self.owner.name.capitalize(), self.session))
 
     async def fe_logout_successful(self):
+        """
+        Let the front end know that this session logged out of the game engine.
+        """
         asyncio.create_task(frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session))
 
     async def grapevine_login(self):
+        """
+        Notify the Grapevine system that this player logged into Akrios.
+        """
         asyncio.create_task(grapevine.msg_gen_player_login(self.owner.name))
 
     async def grapevine_logout(self):
+        """
+        Notify the Grapevine system that this player logged out of Akrios.
+        """
         asyncio.create_task(grapevine.msg_gen_player_logout(self.owner.name))
 
     async def handle_close(self, message=""):
+        """
+        This player session is ending, for whatever reason, so we need to do some cleanup.
+        """
         log.debug(f'performing handle_close, message is: {message}')
         if message != 'softboot':
+            # This is a normal disconnect (quitting, idle timeout, etc)
+            # Notify the front end to close the session and notify Grapevine of the player logout.
             log.debug(f'handle_close: logging {self.owner.name.capitalize()} out of Grapevine and Front end.')
             await frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session)
             await grapevine.msg_gen_player_logout(self.owner.name)
+
         self.state['connected'] = False
         self.state['logged in'] = False
+
+        # Close any remaining tasks in the loop associated with this session.
         for tasks in asyncio.all_tasks():
             if self.session == tasks.get_name():
                 tasks.cancel()
 
     async def login(self, name=None):
+        """
+        A player has connected, begin the login process.
+        """
+        # If we are passed a name a softboot has happened.  Set the connection to a login session that will
+        # automatically log the player in.
+        #     else: Set the session to a new login.
         if name:
             new_conn = login.Login(name, softboot=True)
         else:
@@ -121,11 +150,20 @@ class Session(object):
                 await self.out_buf.put((output, "true"))
 
     async def send(self):
+        """
+        When we have output to send to the player it will be placed in the out_buf, await for that
+        data and as it arrives send the data to the front end for transport to the client.
+        """
         while self.state['connected']:
             message, is_prompt = await self.out_buf.get()
             asyncio.create_task(frontend.msg_gen_player_output(message, self.session, is_prompt))
 
     async def read(self):
+        """
+        As the connected player enters input, the front end transports that to this engine via websockets.
+        When we receive that input it is placed into the session in_buf.  Await input from the player
+        and interpret the input.
+        """
         while self.state['connected']:
             message = await self.in_buf.get()
             asyncio.create_task(self.owner.interp(message))
@@ -152,6 +190,11 @@ async def shutdown(signal_: signal.Signals, loop_: asyncio.AbstractEventLoop):
 
 
 async def shutdown_or_softboot():
+    """
+    To facilitate shutdown or softboot of the game engine, we have a Queue (in the status module for now)
+    which exists to wait for a shutdown/softboot command to occur.  We await something to show up in that
+    queue then we proceed to perform appropriate shutdown/softboot actions.
+    """
     log.debug('Initial launch of shutdown_or_softboot Task')
 
     log.debug('Inside while loop of server running, awaiting message from queue')
@@ -173,12 +216,20 @@ async def shutdown_or_softboot():
 
 
 def handle_exception_generic(loop_, context):
+    """
+    A somewhat generic exception handler.  This will be attached to the event loop as the exception handler.
+    For now we just log the exception information.
+    """
     msg = context.get('exception', context['message'])
     log.warning(f'Caught exception: {msg} in loop: {loop_}')
     log.warning(f'Caught in task: {asyncio.current_task().get_name()}')
 
 
 async def handle_fe_messages():
+    """
+    As the front end receives player input, it sends that over to this game engine (handled elsewhere in this
+    module). We await any input we receive and put it into the in_buf queue for that particular player session.
+    """
     while status.server['running']:
         message = await frontend.messages_to_game.get()
         session, msg = message
@@ -187,18 +238,32 @@ async def handle_fe_messages():
 
 
 async def cmd_fe_client_connected(options):
+    """
+    We have received a client connected notification from the front end.  Create a session and begin a login
+    session.
+    """
     uuid, address, port = options
     session = Session(uuid, address, port)
     asyncio.create_task(session.login())
 
 
 async def cmd_fe_client_disconnected(options):
+    """
+    We have received a client disconnected notification from the front end.  Since the player did not technically
+    quit the game, we place them in a link-dead state.
+    """
     uuid, address, port = options
     if uuid in sessions:
         sessions[uuid].state['link dead'] = True
 
 
 async def cmd_fe_game_load_players(options):
+    """
+    We have received a game_load_players notification from the front end.  When this game engine starts and connects
+    to the Front End, if there are existing sessions already connected to the front end we assume we have either
+    performed a softboot, or we crashed and were restarted.   This list from the front end tells us which players
+    are connected and their session so that we can auto-log them in.
+    """
     for session in options:
         name, address, port = options[session]
         session = Session(session, address, port)
@@ -206,6 +271,10 @@ async def cmd_fe_game_load_players(options):
 
 
 async def handle_fe_commands():
+    """
+    We have received a JSON package from the front end.  Determine the command type parameter and create
+    a task, via the appropriate coroutine, to process the payload.
+    """
     commands = {'client_connected': cmd_fe_client_connected,
                 'client_disconnected': cmd_fe_client_disconnected,
                 'game_load_players': cmd_fe_game_load_players}

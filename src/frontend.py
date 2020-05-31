@@ -1,5 +1,5 @@
 #! usr/bin/env python3
-# Project: Dark Waters
+# Project: akrios-ii
 # Filename: frontend.py
 # 
 # File Description: A module to allow connection to the new Akrios Front End.
