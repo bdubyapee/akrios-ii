@@ -129,7 +129,7 @@ class Atomic(object):
                 fromspot_message = f"{mover} has vanished into thin air."
             else:
                 fromspot_message = f"{mover} has left to the {direction}."
-            comm.message_to_room(fromspot, self, fromspot_message)
+            await comm.message_to_room(fromspot, self, fromspot_message)
             fromspot.contents.remove(self)
 
         # Once object notification is in, notify left room of departure and
@@ -142,7 +142,7 @@ class Atomic(object):
             tospot_message = f"{mover} has sprung into existence!"
         else:
             tospot_message = f"{mover} has arrived from the {rev_direction}."
-        comm.message_to_room(tospot, self, tospot_message)
+        await comm.message_to_room(tospot, self, tospot_message)
 
     def capability_contains(self, capability=''):
         return True if capability and capability in self.capability else False

@@ -74,7 +74,7 @@ async def wear(caller, args, **kwargs):
     caller.equipped[location] = target.aid
     if 'hand' in location:
         await caller.write(f"You hold a {target.disp_name} in your {location}")
-        comm.message_to_room(caller.location, caller, f"{caller.disp_name} holds a {target.disp_name}.")
+        await comm.message_to_room(caller.location, caller, f"{caller.disp_name} holds a {target.disp_name}.")
     else:
         await caller.write(f"You wear a {target.disp_name} on your {location}.")
-        comm.message_to_room(caller.location, caller, f"{caller.disp_name} wears a {target.disp_name}.")
+        await comm.message_to_room(caller.location, caller, f"{caller.disp_name} wears a {target.disp_name}.")

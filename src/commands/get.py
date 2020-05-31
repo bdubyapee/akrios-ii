@@ -39,4 +39,4 @@ async def get(caller, args, **kwargs):
         caller.location.area.objectlist.remove(target)
 
     await caller.write(f"You pick up a {target.disp_name}")
-    comm.message_to_room(caller.location, caller, f"{caller.disp_name} picks up a {target.disp_name}")
+    await comm.message_to_room(caller.location, caller, f"{caller.disp_name} picks up a {target.disp_name}")

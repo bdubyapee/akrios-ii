@@ -31,12 +31,12 @@ async def sit(caller, args, **kwargs):
             caller.position = "sitting"
             await caller.write("You sit down.")
             message = f"{caller.disp_name} sits down."
-            comm.message_to_room(caller.location, caller, message)
+            await comm.message_to_room(caller.location, caller, message)
             return
         elif caller.position == "sleeping":
             caller.position = "sitting"
             await caller.write("You wake up and begin sitting")
             message = f"{caller.disp_name} sits up and looks around."
-            comm.message_to_room(caller.location, caller, message)
+            await comm.message_to_room(caller.location, caller, message)
             await caller.interp("look")
             return

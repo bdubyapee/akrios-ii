@@ -30,5 +30,5 @@ async def sleep(caller, args, **kwargs):
         caller.position = "sleeping"
         await caller.write("You lay down and go to sleep.")
         message = f"{caller.disp_name} lays down to sleep."
-        comm.message_to_room(caller.location, caller, message)
+        await comm.message_to_room(caller.location, caller, message)
         return

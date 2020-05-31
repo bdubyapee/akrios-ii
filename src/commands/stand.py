@@ -30,12 +30,12 @@ async def stand(caller, args, **kwargs):
         caller.position = "standing"
         await caller.write("You stand up.")
         message = f"{caller.disp_name} stands up."
-        comm.message_to_room(caller.location, caller, message)
+        await comm.message_to_room(caller.location, caller, message)
         return
     elif caller.position == "sleeping":
         caller.position = "standing"
         await caller.write("You awaken and stand up.")
         message = f"{caller.disp_name} stands up."
-        comm.message_to_room(caller.location, caller, message)
+        await comm.message_to_room(caller.location, caller, message)
         await caller.interp("look")
         return

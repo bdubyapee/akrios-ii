@@ -74,6 +74,6 @@ async def remove(caller, args, **kwargs):
     if location:
         caller.equipped[location] = None
         await caller.write(f"You remove a {target.disp_name} from your {location}")
-        comm.message_to_room(caller.location, caller, f"{caller.disp_name} removes a {target.disp_name}")
+        await comm.message_to_room(caller.location, caller, f"{caller.disp_name} removes a {target.disp_name}")
     else:
         await caller.write("Error remove {target.disp_name} from {location}.")

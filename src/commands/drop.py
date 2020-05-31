@@ -64,5 +64,5 @@ async def drop(caller, args, **kwargs):
     target.location = caller.location
     target.location.contents.append(target)
     await caller.write(f"You drop a {target.disp_name}")
-    comm.message_to_room(caller.location, caller, f"{caller.disp_name} drops a {target.disp_name}")
+    await comm.message_to_room(caller.location, caller, f"{caller.disp_name} drops a {target.disp_name}")
 
