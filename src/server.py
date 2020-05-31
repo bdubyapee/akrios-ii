@@ -12,7 +12,6 @@ import asyncio
 import logging
 import signal
 import string
-from typing import Dict, List
 
 # Third Party
 
@@ -71,9 +70,9 @@ class Session(object):
         asyncio.create_task(grapevine.msg_gen_player_logout(self.owner.name))
 
     async def handle_close(self, message=""):
-        log.info(f'performing handle_close, message is: {message}')
+        log.debug(f'performing handle_close, message is: {message}')
         if message != 'softboot':
-            log.info(f'handle_close: logging {self.owner.name.capitalize()} out of Grapevine and Front end.')
+            log.debug(f'handle_close: logging {self.owner.name.capitalize()} out of Grapevine and Front end.')
             await frontend.msg_gen_player_logout(self.owner.name.capitalize(), self.session)
             await grapevine.msg_gen_player_logout(self.owner.name)
         self.state['connected'] = False
@@ -132,7 +131,7 @@ class Session(object):
             asyncio.create_task(self.owner.interp(message))
 
 
-async def shutdown(signal_: signal.Signals, loop_: asyncio.AbstractEventLoop) -> None:
+async def shutdown(signal_: signal.Signals, loop_: asyncio.AbstractEventLoop):
     """
         shutdown coroutine utilized for cleanup on receipt of certain signals.
         Created and added as a handler to the loop in __main__
@@ -141,7 +140,7 @@ async def shutdown(signal_: signal.Signals, loop_: asyncio.AbstractEventLoop) ->
     """
     log.warning(f'Received exit signal {signal_.name}')
 
-    tasks: List[asyncio.Task] = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
 
     log.info(f'Cancelling {len(tasks)} outstanding tasks')
 
@@ -173,13 +172,13 @@ async def shutdown_or_softboot():
     status.server['running'] = False
 
 
-def handle_exception_generic(loop_: asyncio.AbstractEventLoop, context: Dict) -> None:
-    msg: str = context.get('exception', context['message'])
+def handle_exception_generic(loop_, context):
+    msg = context.get('exception', context['message'])
     log.warning(f'Caught exception: {msg} in loop: {loop_}')
-    log.warning(f'Caught in task: {asyncio.current_task().get_name()}')  # type: ignore
+    log.warning(f'Caught in task: {asyncio.current_task().get_name()}')
 
 
-async def handle_messages() -> None:
+async def handle_fe_messages():
     while status.server['running']:
         message = await frontend.messages_to_game.get()
         session, msg = message
@@ -187,29 +186,29 @@ async def handle_messages() -> None:
             asyncio.create_task(sessions[session].in_buf.put(msg))
 
 
-async def cmd_client_connected(options) -> None:
+async def cmd_fe_client_connected(options):
     uuid, address, port = options
     session = Session(uuid, address, port)
     asyncio.create_task(session.login())
 
 
-async def cmd_client_disconnected(options) -> None:
+async def cmd_fe_client_disconnected(options):
     uuid, address, port = options
     if uuid in sessions:
         sessions[uuid].state['link dead'] = True
 
 
-async def cmd_game_load_players(options) -> None:
+async def cmd_fe_game_load_players(options):
     for session in options:
         name, address, port = options[session]
         session = Session(session, address, port)
         asyncio.create_task(session.login(name))
 
 
-async def handle_commands() -> None:
-    commands = {'client_connected': cmd_client_connected,
-                'client_disconnected': cmd_client_disconnected,
-                'game_load_players': cmd_game_load_players}
+async def handle_fe_commands():
+    commands = {'client_connected': cmd_fe_client_connected,
+                'client_disconnected': cmd_fe_client_disconnected,
+                'game_load_players': cmd_fe_game_load_players}
 
     while status.server['running']:
         command = await frontend.commands_to_game.get()
@@ -223,21 +222,18 @@ async def cmd_grapevine_tells_send(message):
     message = (f'\n\r{{GGrapevine Tell to {{y{target}@{game}{{G '
                f'returned an Error{{x: {{R{error_msg}{{x')
     for each in player.playerlist:
-        if each.disp_name == caller:
-            if each.oocflags_stored['grapevine'] == 'true':
-                await each.write(message)
-                return
+        if each.disp_name == caller and each.oocflags_stored['grapevine'] == 'true':
+            await each.write(message)
+            return
 
 
 async def cmd_grapevine_tells_receive(message):
     sender, target, game, sent, message = message
-    message = (f'\n\r{{GGrapevine Tell from {{y{sender}@{game}{{x: '
-               f'{{G{message}{{x.\n\rReceived at : {sent}.')
+    message = f'\n\r{{GGrapevine Tell from {{y{sender}@{game}{{x: {{G{message}{{x.\n\rReceived at : {sent}.'
     for each in player.playerlist:
-        if each.disp_name == target.capitalize():
-            if each.oocflags_stored['grapevine'] == 'true':
-                await each.write(message)
-                return
+        if each.disp_name == target.capitalize() and each.oocflags_stored['grapevine'] == 'true':
+            await each.write(message)
+            return
 
 
 async def cmd_grapevine_games_connect(message):
@@ -295,7 +291,7 @@ async def cmd_grapevine_player_logout(message):
         await each.write(msg)
 
 
-async def handle_grapevine_messages() -> None:
+async def handle_grapevine_messages():
     commands = {'tells/send': cmd_grapevine_tells_send,
                 'tells/receive': cmd_grapevine_tells_receive,
                 'games/connect': cmd_grapevine_games_connect,
@@ -314,12 +310,12 @@ async def handle_grapevine_messages() -> None:
             await commands[event_type](values)
 
 
-async def main() -> None:
+async def main():
     log.info('Calling main()')
     tasks = [asyncio.create_task(frontend.connect(), name='frontend'),
              asyncio.create_task(grapevine.connect(), name='grapevine'),
-             asyncio.create_task(handle_commands(), name='server-commands'),
-             asyncio.create_task(handle_messages(), name='server-messages'),
+             asyncio.create_task(handle_fe_commands(), name='server-commands'),
+             asyncio.create_task(handle_fe_messages(), name='server-messages'),
              asyncio.create_task(handle_grapevine_messages(), name='grapevine'),
              asyncio.create_task(shutdown_or_softboot(), name='shutdown-or-softboot')
              ]

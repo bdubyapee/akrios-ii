@@ -29,7 +29,7 @@ async def get(caller, args, **kwargs):
     # Check weight of thing picked up or cancel
 
     if target.is_mobile or target.is_player:
-        await caller.write("You cannot pick up players or mobiles, yet.")
+        await caller.write("You cannot pick up players or mobiles. Yet.")
         return
 
     caller.contents[target.aid] = target
