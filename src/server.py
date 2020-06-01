@@ -29,14 +29,20 @@ from world import server_log
 
 log = logging.getLogger(__name__)
 
-# This is the dict of connected sessions.
 sessions = {}
 
-# Assistant variables for removing certain characters from our input.
+# Assistant variable for removing certain characters from our input.
+# XXX Need to reevaluate this for Unicode.
 valid_chars = string.printable.replace(string.whitespace[1:], "")
 
 
 class Session(object):
+    """
+    Ever connecting player session will instance this class.
+
+    Each session will have a bevy of normal attributes as well as an inbound and outbound buffer, which are
+    asyncio.Queues.  We also create any tasks that are specific to the session.
+    """
     def __init__(self, uuid, address, port):
         self.owner = None
         self.host = address
@@ -169,7 +175,9 @@ class Session(object):
             asyncio.create_task(self.owner.interp(message))
 
 
-async def shutdown(signal_: signal.Signals, loop_: asyncio.AbstractEventLoop):
+# Game engine level coroutines
+
+async def shutdown(signal_, loop_):
     """
         shutdown coroutine utilized for cleanup on receipt of certain signals.
         Created and added as a handler to the loop in __main__
@@ -224,6 +232,8 @@ def handle_exception_generic(loop_, context):
     log.warning(f'Caught exception: {msg} in loop: {loop_}')
     log.warning(f'Caught in task: {asyncio.current_task().get_name()}')
 
+
+# Front end message handling coroutines
 
 async def handle_fe_messages():
     """
@@ -286,7 +296,13 @@ async def handle_fe_commands():
             asyncio.create_task(commands[command_type](options))
 
 
+# Grapevine message handling coroutines
+
 async def cmd_grapevine_tells_send(message):
+    """
+    We have received a message from Grapevine indicating a tell send failure.
+    Notify the player.
+    """
     caller, target, game, error_msg = message
     message = (f'\n\r{{GGrapevine Tell to {{y{target}@{game}{{G '
                f'returned an Error{{x: {{R{error_msg}{{x')
@@ -297,6 +313,10 @@ async def cmd_grapevine_tells_send(message):
 
 
 async def cmd_grapevine_tells_receive(message):
+    """
+    We have received a message from Grapevine indicating a tell from a player on a foreign game.
+    Send tell message to local player.
+    """
     sender, target, game, sent, message = message
     message = f'\n\r{{GGrapevine Tell from {{y{sender}@{game}{{x: {{G{message}{{x.\n\rReceived at : {sent}.'
     for each in player.playerlist:
@@ -306,6 +326,10 @@ async def cmd_grapevine_tells_receive(message):
 
 
 async def cmd_grapevine_games_connect(message):
+    """
+    We have received a message from Grapevine indicating a game has connected
+    to the Grapevine network.
+    """
     game = message.capitalize()
     message = f'\n\r{{GGrapevine Status Update: {game} connected to network{{x'
 
@@ -317,6 +341,10 @@ async def cmd_grapevine_games_connect(message):
 
 
 async def cmd_grapevine_games_disconnect(message):
+    """
+    We have received a message from Grapevine indicating a game has disconnected
+    from the Grapevine network.
+    """
     game = message.capitalize()
     message = f'\n\r{{GGrapevine Status Update: {game} disconnected from network{{x'
     if message != '':
@@ -327,6 +355,9 @@ async def cmd_grapevine_games_disconnect(message):
 
 
 async def cmd_grapevine_channels_broadcast(message):
+    """
+    We have received a message from Grapevine indicating a channel/broadcast from another game.
+    """
     name, game, message, channel = message
     if name is None or game is None:
         log.info('Received channels/broadcast with None type')
@@ -343,6 +374,10 @@ async def cmd_grapevine_channels_broadcast(message):
 
 
 async def cmd_grapevine_player_login(message):
+    """
+    We have received a message from Grapevine indicating a status update of Player Login
+    to a game on the network.
+    """
     msg = f'\n\r{{GGrapevine Status Update: {message}{{x'
 
     grape_enabled = [players for players in player.playerlist
@@ -352,6 +387,10 @@ async def cmd_grapevine_player_login(message):
 
 
 async def cmd_grapevine_player_logout(message):
+    """
+    We have received a message from Grapevine indicating a status update of Player Logout
+    from a game on the network.
+    """
     msg = f'\n\r{{GGrapevine Status Update: {message}{{x'
 
     grape_enabled = [players for players in player.playerlist
@@ -361,6 +400,10 @@ async def cmd_grapevine_player_logout(message):
 
 
 async def handle_grapevine_messages():
+    """
+    We have received a JSON package from Grapevine.  Determine the command type parameter and create
+    a task, via the appropriate coroutine, to process the payload.
+    """
     commands = {'tells/send': cmd_grapevine_tells_send,
                 'tells/receive': cmd_grapevine_tells_receive,
                 'games/connect': cmd_grapevine_games_connect,
@@ -380,6 +423,9 @@ async def handle_grapevine_messages():
 
 
 async def main():
+    """
+    The main launching coroutine for the game engine.  Game level tasks are created and awaited.
+    """
     log.info('Calling main()')
     tasks = [asyncio.create_task(frontend.connect(), name='frontend'),
              asyncio.create_task(grapevine.connect(), name='grapevine'),
@@ -427,6 +473,8 @@ if __name__ == '__main__':
 
     loop.set_exception_handler(handle_exception_generic)
 
+    # Initialization of requisite systems for the game engine to operate.
+    # XXX Need to finish converting these.
     helpsys.init()
     races.init()
     asyncio.gather(area.init())

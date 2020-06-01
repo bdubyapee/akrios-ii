@@ -12,7 +12,7 @@ https://github.com/bdubyapee/akrios-frontend
 
 ## Upcoming changes
 
-As of right now, 5-5-2020, the future plans include:
+As of right now, 5-30-2020, the future plans include:
 
 Complete migration of engine to asyncio.
 
