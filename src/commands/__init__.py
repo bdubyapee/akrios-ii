@@ -23,6 +23,7 @@ import area
 import color
 import exits
 import helpsys
+import outbuffer
 import room
 import races
 import status
