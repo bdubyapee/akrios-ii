@@ -22,7 +22,6 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def wield(caller, args, **kwargs):
-
     target = None
     args = args.lower()
     
@@ -52,7 +51,7 @@ async def wield(caller, args, **kwargs):
         if not caller.equipped[each_loc]:
             caller.equipped[each_loc] = target.aid
             await caller.write(f"You wield a {target.disp_name} in your {each_loc}")
-            await comm.message_to_room(caller.location, caller, f"{caller.disp_name} wield a {target.disp_name}")
+            await comm.message_to_room(caller.location, caller, f"{caller.disp_name} wields a {target.disp_name}")
             worn = True
             break
 
