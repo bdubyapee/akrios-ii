@@ -21,10 +21,13 @@ requirements = {'capability': ['admin'],
 
 @Command(**requirements)
 async def coding(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caler)
+
     if caller.oocflags['coding'] is False:
         caller.oocflags['coding'] = True
-        await caller.write("You have been placed in coding mode.")
+        buffer.add("You have been placed in coding mode.")
     else:
         caller.oocflags['coding'] = False
-        await caller.write('You have been removed from coding mode.')
+        buffer.add('You have been removed from coding mode.')
 
+    await buffer.write()

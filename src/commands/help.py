@@ -22,21 +22,25 @@ requirements = {'capability': ['player'],
 @Command(**requirements)
 async def help(caller, args, **kwargs):
     key = args.lower()
+    buffer = outbuffer.OutBuffer(caller)
+
     if key != '':
         key = key.split()
         for onekey in helpsys.helpfiles:
             if onekey.startswith(key[0]):
                 if helpsys.helpfiles[onekey].viewable.lower() == 'true':
-                    await caller.write(helpsys.helpfiles[onekey].description)
+                    buffer.add(helpsys.helpfiles[onekey].description)
+                    await buffer.write()
                     return
         filename = os.path.join(world.logDir, 'missinghelp')
         with open(filename, 'a') as thefile:
             thefile.write(f'{time.asctime()}> {key}\n')
-        await caller.write('We do not appear to have a help file for that topic.  We have however logged'
-                           ' the attempt and will look into creating a help file for that topic.')
+        buffer.add('We do not appear to have a help file for that topic.  We have however logged'
+                   ' the attempt and will look into creating a help file for that topic.')
+        await buffer.write()
     else:
         header = f"{{rHelp Files by Topic{{x"
-        await caller.write(f"{header:^80}")
+        buffer.add(f"{header:^80}")
 
         retval = []
         for onehelp in helpsys.helpfiles:
@@ -60,9 +64,9 @@ async def help(caller, args, **kwargs):
         for eachtopic in topics_sorted:
             if eachtopic == "game, rp, mythos":
                 temp_topic = "Game, RP, Mythos"
-                await caller.write(f"\n\r{{B{temp_topic:^77}{{x")
+                buffer.add(f"\n\r{{B{temp_topic:^77}{{x")
             else:
-                await caller.write(f"\n\r{{B{eachtopic.capitalize():^77}{{x")
+                buffer.add(f"\n\r{{B{eachtopic.capitalize():^77}{{x")
 
             the_keywords = topics[eachtopic]
             the_keywords.sort()
@@ -74,5 +78,6 @@ async def help(caller, args, **kwargs):
                 output = ''
                 for l in range(0, numcols):
                     output = f"{output}{the_keywords[i+l]:20}"
-                await caller.write(output)
-        await caller.write("\n\r\n\r{WUsage{x: help <argument>\n\r")
+                buffer.add(output)
+        buffer.add("\n\r\n\r{WUsage{x: help <argument>\n\r")
+        await buffer.write()

@@ -24,6 +24,7 @@ requirements = {'capability': ['admin'],
 
 @Command(**requirements)
 async def grestart(caller, args, **kwargs):
+
     await player.wiznet("Initiating restart simulation from Grapevine.")
 
     payload = {"downtime": 15}

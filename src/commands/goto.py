@@ -21,6 +21,8 @@ requirements = {'capability': ['admin'],
 @Command(**requirements)
 async def goto(caller, args, **kwargs):
     args = args.split()
+    buffer = outbuffer.OutBuffer(caller)
+
     try:
         vnum = int(args[0])
     except:
@@ -35,7 +37,8 @@ async def goto(caller, args, **kwargs):
         newroom = player.playerlist_by_name[args[0].lower()].location
 
     if not newroom:
-        await caller.write("That location doesn't appear to exist!")
+        buffer.add("That location doesn't appear to exist!")
+        await buffer.write()
     else:
         try:
             await caller.move(newroom, caller.location, direction="goto")

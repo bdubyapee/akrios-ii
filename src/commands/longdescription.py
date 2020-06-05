@@ -23,6 +23,7 @@ async def longdescription(caller, args, **kwargs):
     formatter = textwrap.TextWrapper(width=76)
     formatted_text = formatter.wrap(args[:2000])
     caller.long_description = '\n'.join(formatted_text)
+    buffer = outbuffer.OutBuffer(caller)
 
-    await caller.write('{xYour description has been set.')
-
+    buffer.add('{xYour description has been set.')
+    await buffer.write()

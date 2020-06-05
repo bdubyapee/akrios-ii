@@ -22,8 +22,11 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def gsubscribe(caller, args='', **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.oocflags_stored['grapevine'] == 'false':
-        await caller.write("You have Grapevine disabled with the 'toggle' command.")
+        buffer.add("You have Grapevine disabled with the 'toggle' command.")
+        await buffer.write()
         return
 
     if args == '':
@@ -32,8 +35,9 @@ async def gsubscribe(caller, args='', **kwargs):
             if subbed:
                 akrios_subscribed.append(chan)
 
-        await caller.write(f"Akrios subscribed to: {', '.join(akrios_subscribed)}.")
-        await caller.write(f"You are subscribed to: {', '.join(caller.oocflags['grapevine_channels'])}.")
+        buffer.add(f"Akrios subscribed to: {', '.join(akrios_subscribed)}.")
+        buffer.add(f"You are subscribed to: {', '.join(caller.oocflags['grapevine_channels'])}.")
+        await buffer.write()
         return
 
     if ' ' in args:
@@ -47,19 +51,24 @@ async def gsubscribe(caller, args='', **kwargs):
     if caller.is_admin and force_ == 'force':
         if channel in grapevine.subscribed:
             asyncio.create_task(grapevine.msg_gen_chan_unsubscribe(channel))
-            await caller.write(f"Sending unsubscribe to Grapevine for channel: {channel}")
+            buffer.add(f"Sending unsubscribe to Grapevine for channel: {channel}")
+            await buffer.write()
             return
         else:
             asyncio.create_task(grapevine.msg_gen_chan_subscribe(channel))
-            await caller.write(f"Sending subscribe to Grapevine for channel: {channel}")
+            buffer.add(f"Sending subscribe to Grapevine for channel: {channel}")
+            await buffer.write()
             return
 
     if channel in grapevine.subscribed:
         if channel in caller.oocflags['grapevine_channels']:
-            await caller.write(f"You are already subscribed to channels: {caller.oocflags['grapevine_channels']}.")
+            buffer.add(f"You are already subscribed to channels: {caller.oocflags['grapevine_channels']}.")
+            await buffer.write()
             return
         else:
             caller.oocflags['grapevine_channels'].append(channel)
-            await caller.write(f"Subscribing you to {channel}")
+            buffer.add(f"Subscribing you to {channel}")
+            await buffer.write()
     else:
-        await caller.write("Akrios is not subscribed to that Grapevine channel.  Ask Jubelo to subscribe.")
+        buffer.add("Akrios is not subscribed to that Grapevine channel.  Ask Jubelo to subscribe.")
+        await buffer.write()

@@ -21,6 +21,8 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def look(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.location != 0 and len(args) <= 0:
         if caller.is_player and caller.oocflags['viewOLCdetails'] is True:
             namepretext = f"{{W[{{xVNUM: {{p{caller.location.vnum}{{W]{{x "
@@ -41,25 +43,27 @@ async def look(caller, args, **kwargs):
         if theexits == '':
             theexits = 'none'
 
-        await caller.write(f"{name_}")
-        await caller.write(f"{desc}")
-        await caller.write(f"{{Y[{{GExits: {{p{theexits}{{Y]{{x\n\r")
+        buffer.add(f"{name_}")
+        buffer.add(f"{desc}")
+        buffer.add(f"{{Y[{{GExits: {{p{theexits}{{Y]{{x\n\r")
         for thing in things:
             if thing is not caller and thing.name:
-                if thing.is_player and thing.oocflags['afk'] == True:
+                if thing.is_player and thing.oocflags['afk'] is True:
                     pretext = "{W[{RAFK{W]{x"
                 else:
                     pretext = ""
 
                 if thing.is_player or thing.is_mobile:
-                    await caller.write(f"   {pretext} {thing.disp_name} is {thing.position} here.")
+                    buffer.add(f"   {pretext} {thing.disp_name} is {thing.position} here.")
                 else:
-                    await caller.write(f"        {pretext} {thing.disp_name} is here.")
-              
+                    buffer.add(f"        {pretext} {thing.disp_name} is here.")
+        await buffer.write()
+
     elif len(args) > 0:
         # Is it a room extra description?
         if args in caller.location.extradescriptions:
-            await caller.write(caller.location.extradescriptions[args])
+            buffer.add(caller.location.extradescriptions[args])
+            await buffer.write()
             return
         # Is it a person?
         notfound = True
@@ -79,12 +83,14 @@ async def look(caller, args, **kwargs):
                         notfound = False
         if notfound is False:
             if not lookingat.long_description:
-                await caller.write("They don't appear to have a description set yet.")
+                buffer.add("They don't appear to have a description set yet.")
+                await buffer.write()
             else:
-                await caller.write(lookingat.long_description)
-            await caller.write("")
+                buffer.add(lookingat.long_description)
+                await buffer.write()
+            buffer.add("")
             if lookingat.is_player or lookingat.is_mobile:
-                await caller.write("They are wearing:")
+                buffer.add("They are wearing:")
 
                 for each_loc, each_aid in lookingat.equipped.items():
                     if lookingat.equipped[each_loc] is None:
@@ -101,15 +107,14 @@ async def look(caller, args, **kwargs):
                         preface = "worn around "
                     each_loc = f"{preface}{each_loc}"
 
-                    await caller.write(f"      <{each_loc:22}>   {eq_name:40}")
-            await caller.write("")
+                    buffer.add(f"      <{each_loc:22}>   {eq_name:40}")
+            await buffer.write()
             return
 
-        await caller.write("You don't see anything like that.")
+        buffer.add("You don't see anything like that.")
+        await buffer.write()
     else:
-        await caller.write("{xNowhere Special{x")
-        await caller.write("You see nothing in any direction.")
-        await caller.write("{{Y[{{GExits: {{Bnone{{Y]{{x")
-
-
-
+        buffer.add("{xNowhere Special{x")
+        buffer.add("You see nothing in any direction.")
+        buffer.add("{{Y[{{GExits: {{Bnone{{Y]{{x")
+        await buffer.write()

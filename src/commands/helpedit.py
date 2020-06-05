@@ -22,13 +22,16 @@ requirements = {'capability': ['admin'],
 async def helpedit(caller, args, **kwargs):
     helpstring = "Please see {Whelp helpedit{x for instructions."
     args = args.split()
+    buffer = outbuffer.OutBuffer(caller)
 
     if len(args) == 0:
         if caller.is_building and not caller.is_editing:
-            await caller.write(caller.building.display())
+            buffer.add(caller.building.display())
+            await buffer.write()
             return
         elif not caller.is_building:
-            await caller.write(helpstring)
+            buffer.add(helpstring)
+            await buffer.write()
             return
 
     if caller.is_building and caller.is_editing:
@@ -63,18 +66,21 @@ async def helpedit(caller, args, **kwargs):
             caller.prompt = caller.oldprompt
             del caller.oldprompt
         elif args[0] == 'new':
-            await caller.write("You are already editing a help entry.")
+            buffer.add("You are already editing a help entry.")
+            await buffer.write()
             return
         elif args[0] in caller.building.commands:
             try:
                 caller.building.doAttrib(args[0], ' '.join(args[1:]))
             except:
-                await caller.write("There was an error processing that request.  Possible options are:")
+                buffer.add("There was an error processing that request.  Possible options are:")
                 theoptions = ", ".join(caller.building.commands[args[0]][1].keys())
-                await caller.write(f"    {{W{theoptions}{{x")
+                buffer.add(f"    {{W{theoptions}{{x")
+                await buffer.write()
                 return
         else:
-            await caller.write(helpstring)
+            buffer.add(helpstring)
+            await buffer.write()
     else:
         if args[0] == 'new':
             if len(args) != 2 or args[1] in helpsys.helpfiles:
@@ -83,22 +89,25 @@ async def helpedit(caller, args, **kwargs):
             else:
                 caller.building = helpsys.Help(f"{world.helpDir}/{args[1]}.json")
                 caller.building.builder = caller
-                await caller.write(caller.building.display())
-                await caller.write(f"Editing {{W{args[0]}{{x help entry.")
-                await caller.write("Please visit {Whelp helpedit{x for details.\n\r")
+                buffer.add(caller.building.display())
+                buffer.add(f"Editing {{W{args[0]}{{x help entry.")
+                buffer.add("Please visit {Whelp helpedit{x for details.\n\r")
+                await buffer.write()
                 caller.oldprompt = caller.prompt
                 caller.prompt = "hEdit:> "
         elif args[0] == 'reload':
             helpsys.reload()
-            await caller.write("All helpfiles have been reloaded.")
+            buffer.add("All helpfiles have been reloaded.")
+            await buffer.write()
         elif args[0] in helpsys.helpfiles:
             caller.building = helpsys.helpfiles[args[0]]
             caller.building.builder = caller
-            await caller.write(f"Editing {{W{args[0]}{{x help entry.")
-            await caller.write("Please visit {Whelp helpedit{x for details.\n\r")
+            buffer.add(f"Editing {{W{args[0]}{{x help entry.")
+            buffer.add("Please visit {Whelp helpedit{x for details.\n\r")
             caller.oldprompt = caller.prompt
             caller.prompt = "hEdit:> "
-            await caller.write(caller.building.display())
+            buffer.add(caller.building.display())
+            await buffer.write()
         else:
-            await caller.write(helpstring)
-
+            buffer.add(helpstring)
+            await buffer.write()

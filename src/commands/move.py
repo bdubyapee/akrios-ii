@@ -22,17 +22,21 @@ requirements = {'capability': ['player', 'mobile', 'object'],
 
 @Command(**requirements)
 async def move(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if args in caller.location.exits:
         exit_ = caller.location.exits[args]
         if exit_.destination in caller.location.area.roomlist:
             # Does the exit have a door and is it closed?
             if exit_.hasdoor == 'true' and exit_.dooropen == 'false':
-                await caller.write("The door in that direction is closed.")
+                buffer.add("The door in that direction is closed.")
+                await buffer.write()
                 return
             # Are we too tall to fit in that exit?
             heightnow = caller.height['feet'] * 12 + caller.height['inches']
             if exits.exit_sizes[exit_.size].height < heightnow:
-                await caller.write("You will not fit!")
+                buffer.add("You will not fit!")
+                await buffer.write()
                 return
 
             # We have passed all validity checks to move.  Housekeeping and move the thing.
@@ -47,7 +51,8 @@ async def move(caller, args, **kwargs):
             if was_building:
                 await Command.commandhash['roomedit'](caller, str(exit_.destination))
         else:
-            await caller.write("That exit appears to be broken!")
+            buffer.add("That exit appears to be broken!")
+            await buffer.write()
     else:
-        await caller.write("You can't go in that direction.")
-
+        buffer.add("You can't go in that direction.")
+        await buffer.write()

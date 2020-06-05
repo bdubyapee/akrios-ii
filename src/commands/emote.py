@@ -31,4 +31,7 @@ async def emote(caller, args, **kwargs):
         else:
             prefix = '\n\r'
 
-        await person.write(f"\n\r{{g{prefix}{caller.disp_name} {args_[:70]}{{x")
+        buffer_target = outbuffer.OutBuffer(person)
+        buffer_target.add(f"\n\r{{g{prefix}{caller.disp_name} {args_[:70]}{{x")
+
+        await buffer_target.write()

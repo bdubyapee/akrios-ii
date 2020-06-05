@@ -21,6 +21,7 @@ requirements = {'capability': ['admin'],
 @Command(**requirements)
 async def force(caller, args, **kwargs):
     args = args.split()
+    buffer = outbuffer.OutBuffer(caller)
 
     target_name = args[0]
     command = ' '.join(args[1:])
@@ -33,4 +34,5 @@ async def force(caller, args, **kwargs):
     if target_obj is not None:
         target_obj.interp(command)
         
-    await caller.write(f"You forced {target_obj.name} to {command}.")
+    buffer.add(f"You forced {target_obj.name} to {command}.")
+    await buffer.write()

@@ -23,24 +23,29 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def gtell(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.oocflags_stored['grapevine'] == 'false':
-        await caller.write("You have that command self disabled with the 'toggle' command.")
+        buffer.add("You have that command self disabled with the 'toggle' command.")
+        await buffer.write()
         return
 
     target = args.split()[0]
     if '@' in target:
         target, game = target.split('@')
     else:
-        await caller.write("Command format is 'gtell player@game <message>'.")
+        buffer.add("Command format is 'gtell player@game <message>'.")
+        await buffer.write()
         return
 
     message = ' '.join(args.split()[1:])
 
     if game.lower() in ['akrios', 'akriosmud']:
-        await caller.write("Just use in-game channels to talk to players on Akrios.")
+        buffer.add("Just use in-game channels to talk to players on Akrios.")
+        await buffer.write()
         return
 
     asyncio.create_task(grapevine.msg_gen_player_tells(caller.disp_name, game, target, message))
 
-    await caller.write(f"{{GYou Grapevine tell {{y{target}@{game}{{x: '{{G{message}{{x'")
-
+    buffer.add(f"{{GYou Grapevine tell {{y{target}@{game}{{x: '{{G{message}{{x'")
+    await buffer.write()

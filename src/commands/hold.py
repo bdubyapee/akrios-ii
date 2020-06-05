@@ -22,12 +22,13 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def hold(caller, args, **kwargs):
-
     target = None
     args = args.lower()
+    buffer = outbuffer.OutBuffer(caller)
     
     if not args:
-        await caller.write("What would you like to hold?")
+        buffer.add("What would you like to hold?")
+        await buffer.write()
         return
 
     for aid, object_ in caller.contents.items():
@@ -41,7 +42,8 @@ async def hold(caller, args, **kwargs):
                 break
 
     if target is None:
-        await caller.write(f"You don't seem to have a {args}.")
+        buffer.add(f"You don't seem to have a {args}.")
+        await buffer.write()
         return
 
     available_hand_slots = [x for x in caller.equipped if 'hand' in x]
@@ -51,10 +53,12 @@ async def hold(caller, args, **kwargs):
     for each_loc in available_hand_slots:
         if not caller.equipped[each_loc]:
             caller.equipped[each_loc] = target.aid
-            await caller.write(f"You hold a {target.disp_name} in your {each_loc}")
+            buffer.add(f"You hold a {target.disp_name} in your {each_loc}")
+            await buffer.write()
             await comm.message_to_room(caller.location, caller, f"{caller.disp_name} holds a {target.disp_name}")
             worn = True
             break
 
     if not worn:
-        await caller.write("Your hands are full!")
+        buffer.add("Your hands are full!")
+        await buffer.write()

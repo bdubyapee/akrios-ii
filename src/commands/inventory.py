@@ -22,20 +22,25 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def inventory(caller, args, **kwarg):
+    buffer = outbuffer.OutBuffer(caller)
 
-    await caller.write("Items currently in your inventory:")
-    await caller.write("")
+    buffer.add("Items currently in your inventory:")
+    buffer.add("")
 
     if not caller.contents:
-        await caller.write("You are carrying nothing.")
+        buffer.add("You are carrying nothing.")
+        await buffer.write()
         return
 
     inventory_ = 0
 
     for aid, object_ in caller.contents.items():
         if aid not in caller.equipped.values():
-            await caller.write(f"       {object_.disp_name:45}")
+            buffer.add(f"       {object_.disp_name:45}")
             inventory_ += 1
 
+    await buffer.write()
+
     if inventory_ == 0:
-        await caller.write("You are carrying nothing.")
+        buffer.add("You are carrying nothing.")
+        await buffer.write()

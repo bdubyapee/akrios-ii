@@ -23,13 +23,14 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def get(caller, args, **kwargs):
-
     target = kwargs['target']
+    buffer = outbuffer.OutBuffer(caller)
     
     # Check weight of thing picked up or cancel
 
     if target.is_mobile or target.is_player:
-        await caller.write("You cannot pick up players or mobiles. Yet.")
+        buffer.add("You cannot pick up players or mobiles. Yet.")
+        await buffer.write()
         return
 
     caller.contents[target.aid] = target
@@ -38,5 +39,6 @@ async def get(caller, args, **kwargs):
     if target in caller.location.area.objectlist:
         caller.location.area.objectlist.remove(target)
 
-    await caller.write(f"You pick up a {target.disp_name}")
+    buffer.add(f"You pick up a {target.disp_name}")
+    await buffer.write()
     await comm.message_to_room(caller.location, caller, f"{caller.disp_name} picks up a {target.disp_name}")

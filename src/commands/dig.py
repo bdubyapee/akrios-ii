@@ -22,18 +22,22 @@ requirements = {'capability': ['builder'],
 async def dig(caller, args, **kwargs):
     helpstring = "Please see {Whelp dig{x for instructions."
     args = args.split()
+    buffer = outbuffer.OutBuffer(caller)
 
     if args[0] in exits.directions:
         if len(args) != 2:
-            await caller.write(helpstring)
+            buffer.add(helpstring)
+            await buffer.write()
             return
         else:
             targetvnum = int(args[1])
             if targetvnum in caller.location.area.roomlist:
-                await caller.write(f"Room {{W{targetvnum}{{x already exists!")
+                buffer.add(f"Room {{W{targetvnum}{{x already exists!")
+                await buffer.write()
                 return
             if args[0] in caller.location.exits:
-                await caller.write("There is already an exit in that direction!")
+                buffer.add("There is already an exit in that direction!")
+                await buffer.write()
                 return
 
             newexitdata = {"direction": args[0],
@@ -46,13 +50,16 @@ async def dig(caller, args, **kwargs):
 
             myarea = caller.location.area
             if targetvnum < myarea.vnumlow or targetvnum > myarea.vnumhigh:
-                await caller.write("That vnum is not in this areas range!")
+                buffer.add("That vnum is not in this areas range!")
+                await buffer.write()
                 return
             else:
                 newroom = room.Room(caller.location.area, vnum=targetvnum)
                 newroom.area.roomlist[targetvnum] = newroom
                 exits.Exit(targetvnum, None, rev_exit_data_json)
                 exits.Exit(caller.location.vnum, None, new_exit_data_json)
-                await caller.write("")
+                buffer.add("")
+                await buffer.write()
     else:
-        await caller.write(helpstring)
+        buffer.add(helpstring)
+        await buffer.write()

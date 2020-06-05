@@ -22,9 +22,9 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def drop(caller, args, **kwargs):
-
     target = None
     args = args.lower()
+    buffer = outbuffer.OutBuffer(caller)
 
     equipped_items_matched = {}
     inventory_items_matched = {}
@@ -44,11 +44,13 @@ async def drop(caller, args, **kwargs):
                     inventory_items_matched[object_.aid] = object_
 
     if not equipped_items_matched and not inventory_items_matched:
-        await caller.write(f"You don't seem to have a {args}.")
+        buffer.add(f"You don't seem to have a {args}.")
+        await buffer.write()
         return
 
     if not inventory_items_matched and equipped_items_matched:
-        await caller.write(f"You need to remove '{args}' before dropping it.")
+        buffer.add(f"You need to remove '{args}' before dropping it.")
+        await buffer.write()
         return
 
     matched_inv = list(inventory_items_matched.values())
@@ -56,13 +58,14 @@ async def drop(caller, args, **kwargs):
     if len(matched_inv) >= 1:
         target = matched_inv[0]
     else:
-        await caller.write(f"Something terribly wrong has happened")
+        buffer.add(f"Something terribly wrong has happened")
+        await buffer.write()
 
     caller.location.area.objectlist.append(target)
     caller.contents.pop(target.aid)
 
     target.location = caller.location
     target.location.contents.append(target)
-    await caller.write(f"You drop a {target.disp_name}")
+    buffer.add(f"You drop a {target.disp_name}")
+    await buffer.write()
     await comm.message_to_room(caller.location, caller, f"{caller.disp_name} drops a {target.disp_name}")
-

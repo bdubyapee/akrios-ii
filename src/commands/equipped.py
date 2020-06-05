@@ -22,9 +22,10 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def equipped(caller, args, **kwarg):
+    buffer = outbuffer.OutBuffer(caller)
 
-    await caller.write("Items currently equipped:")
-    await caller.write("")
+    buffer.add("Items currently equipped:")
+    buffer.add("")
 
     for each_loc, each_aid in caller.equipped.items():
         if caller.equipped[each_loc] is None:
@@ -41,6 +42,6 @@ async def equipped(caller, args, **kwarg):
             preface = "worn around "
         each_loc = f"{preface}{each_loc}"
 
-        await caller.write(f"      <{each_loc:22}>   {eq_name:40}")
+        buffer.add(f"      <{each_loc:22}>   {eq_name:40}")
 
-    await caller.write("")
+    await buffer.write()

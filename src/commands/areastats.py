@@ -20,11 +20,13 @@ requirements = {'capability': ['builder'],
 
 @Command(**requirements)
 async def areastats(caller, args, **kwargs):
-    await caller.write(caller.location.area.display())
-    await caller.write("")
-    await caller.write("{RRooms in this area{x:")
+    buffer = outbuffer.OutBuffer(caller)
+
+    buffer.add(caller.location.area.display())
+    buffer.add("")
+    buffer.add("{RRooms in this area{x:")
     for one_room in caller.location.area.roomlist:
         current_room = caller.location.area.roomlist[one_room]
-        await caller.write(f"{{W[{{B{current_room.vnum}{{W]{{x {current_room.name.capitalize()}")
+        buffer.add(f"{{W[{{B{current_room.vnum}{{W]{{x {current_room.name.capitalize()}")
 
-
+    await buffer.write()

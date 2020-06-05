@@ -20,7 +20,7 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def arealist(caller, args, **kwargs):
-    
+    buffer = outbuffer.OutBuffer(caller)
     see_vnums = False
 
     if caller.is_deity or caller.is_builder or caller.is_admin:
@@ -33,5 +33,5 @@ async def arealist(caller, args, **kwargs):
         name_ = eacharea.name.capitalize()
         diff = eacharea.difficulty.capitalize()
 
-        await caller.write(f"{vnum_string}{{W[ {{B{diff:<8}{{W ]{{x {name_}")
-    await caller.write("")
+        buffer.add(f"{vnum_string}{{W[ {{B{diff:<8}{{W ]{{x {name_}")
+    await buffer.write()

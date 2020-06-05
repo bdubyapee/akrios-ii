@@ -24,21 +24,28 @@ requirements = {'capability': ['player'],
 @Command(**requirements)
 async def alias(caller, args, **kwarg):
     args = args.split()
+    buffer = outbuffer.OutBuffer(caller)
+
     if len(args) == 0:
-        await caller.write("Current alias' saved:")
+        buffer.add("Current alias' saved:")
         for one in caller.alias.keys():
-            await caller.write(f"{one} => {caller.alias[one]}")
+            buffer.add(f"{one} => {caller.alias[one]}")
+        await buffer.write()
         return
     elif args[0] == 'remove' and len(args) == 2:
         if args[1] in caller.alias.keys():
             del caller.alias[args[1]]
-            await caller.write("Alias removed.")
+            buffer.add("Alias removed.")
+            await buffer.write()
         else:
-            await caller.write(f"No alias '{args[1]}' to remove.")
+            buffer.add(f"No alias '{args[1]}' to remove.")
+            await buffer.write()
         return
     elif args[0] == 'alias':
-        await caller.write("See {Whelp alias{x for help with this command.")
+        buffer.add("See {Whelp alias{x for help with this command.")
+        await buffer.write()
         return
     else:
         caller.alias[args[0]] = ' '.join(args[1:])
-        await caller.write(f"Alias {args[0]} successfully created.")
+        buffer.add(f"Alias {args[0]} successfully created.")
+        await buffer.write()

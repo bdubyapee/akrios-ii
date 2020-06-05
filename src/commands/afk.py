@@ -23,10 +23,13 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def afk(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.oocflags['afk']:
         caller.oocflags['afk'] = False
-        await caller.write("AFK mode removed.")
+        buffer.add("AFK mode removed.")
     else:
         caller.oocflags['afk'] = True
-        await caller.write('You have been placed in AFK mode.')
+        buffer.add('You have been placed in AFK mode.')
 
+    await buffer.write()

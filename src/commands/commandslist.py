@@ -20,12 +20,14 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def commandslist(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
     header = f"{{rCommands Available{{x"
-    await caller.write(f"{header:^80}")
-    await caller.write("")
+
+    buffer.add(f"{header:^80}")
+    buffer.add("")
     sub_header = f"{{BPlease see {{Whelp <command>{{B for additional information{{x"
-    await caller.write(f"{sub_header:^80}")
-    await caller.write("")
+    buffer.add(f"{sub_header:^80}")
+    buffer.add("")
 
     cmd_list = [cmd for cmd in Command.commandhash
                 if set(Command.commandcapability[cmd]) & set(caller.capability)]
@@ -38,7 +40,8 @@ async def commandslist(caller, args, **kwargs):
         output = ''
         for l in range(0, numcols):
             output = f"{output}{cmd_list[i+l]:20}"
-        await caller.write(output)
+        buffer.add(output)
 
-    await caller.write("")
-    await caller.write("\n\r{WUsage{x: <command> <optional arguments>")
+    buffer.add("")
+    buffer.add("\n\r{WUsage{x: <command> <optional arguments>")
+    await buffer.write()
