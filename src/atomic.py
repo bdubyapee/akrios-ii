@@ -102,6 +102,7 @@ class Atomic(object):
                     else:
                         await comfind[0](self, ' '.join(inp[1:]))
                 else:
+                    await self.write('')
                     await comfind[0](self, ' '.join(inp[1:]))
                     if self.is_player and not forced:
                         await self.sock.send_prompt()

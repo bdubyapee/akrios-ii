@@ -25,7 +25,7 @@ class OutBuffer:
         self.output.append('\n\r')
 
     async def write(self):
-        await self.caller.write(f'{"".join(self.output)}\n\r')
+        await self.caller.write(f'{"".join(self.output)}')
 
     def __repr__(self):
         return f'{"".join(self.output)}\n\r'

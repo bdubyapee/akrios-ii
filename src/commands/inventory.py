@@ -27,20 +27,13 @@ async def inventory(caller, args, **kwarg):
     buffer.add("Items currently in your inventory:")
     buffer.add("")
 
-    if not caller.contents:
+    if not caller.contents or len(caller.contents) == 0:
         buffer.add("You are carrying nothing.")
         await buffer.write()
         return
 
-    inventory_ = 0
-
     for aid, object_ in caller.contents.items():
         if aid not in caller.equipped.values():
             buffer.add(f"       {object_.disp_name:45}")
-            inventory_ += 1
 
     await buffer.write()
-
-    if inventory_ == 0:
-        buffer.add("You are carrying nothing.")
-        await buffer.write()

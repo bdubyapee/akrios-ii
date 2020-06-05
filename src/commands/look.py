@@ -84,11 +84,9 @@ async def look(caller, args, **kwargs):
         if notfound is False:
             if not lookingat.long_description:
                 buffer.add("They don't appear to have a description set yet.")
-                await buffer.write()
             else:
                 buffer.add(lookingat.long_description)
-                await buffer.write()
-            buffer.add("")
+                buffer.add('')
             if lookingat.is_player or lookingat.is_mobile:
                 buffer.add("They are wearing:")
 
