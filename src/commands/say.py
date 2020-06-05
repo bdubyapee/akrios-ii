@@ -24,9 +24,14 @@ requirements = {'capability': ['player', 'mobile', 'object'],
 async def say(caller, args, **kwargs):
     target_list = kwargs['target']
     message = kwargs['post']
+    buffer = outbuffer.OutBuffer(caller)
        
-    await caller.write(f"{{cYou say, '{message[:300]}'")
+    buffer.add(f"{{cYou say, '{message[:300]}'")
+    await buffer.write()
 
     for person in target_list:
         if person != caller:
-            await person.write(f"{{c{caller.disp_name} says, '{message[:300]}'")
+            buffer_target = outbuffer.OutBuffer(person)
+            buffer_target.add(f"{{c{caller.disp_name} says, '{message[:300]}'")
+            await buffer.write()
+

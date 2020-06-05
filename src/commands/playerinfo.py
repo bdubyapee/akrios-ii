@@ -20,6 +20,9 @@ requirements = {'capability': ['admin'],
 
 @Command(**requirements)
 async def playerinfo(caller, args):
+    buffer = outbuffer.OutBuffer(caller)
+
     for person in player.playerlist:
-        await caller.write(f"Player: {person.disp_name:15} "
-                           f"Host: {person.sock.host:15} ")
+        buffer.add(f"Player: {person.disp_name:15} Host: {person.sock.host:15} ")
+
+    await buffer.write()

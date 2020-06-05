@@ -21,5 +21,8 @@ requirements = {'capability': ['player'],
 @Command(**requirements)
 async def shortdescription(caller, args, **kwargs):
     caller.short_description = args[:78]
+    buffer = outbuffer.OutBuffer(caller)
     
-    await caller.write('{xYour short description has been set.')
+    buffer.add('{xYour short description has been set.')
+    await buffer.write()
+

@@ -24,26 +24,32 @@ async def promote(caller, args, **kwargs):
     target = kwargs['target']
     args_ = kwargs['post']
     status = ''
+    buffer = outbuffer.OutBuffer(caller)
+    buffer_target = outbuffer.OutBuffer(target)
 
     if args_ not in ['admin', 'builder', 'deity']:
-        await caller.write("That is not a valid promotion option.")
+        buffer.add("That is not a valid promotion option.")
+        await buffer.write()
         return
             
     if 'admin' in args_ and 'admin' not in target.capability:
         target.capability.append('admin')
-        await target.write("You've been promoted to Admin status!")
+        buffer_target.add("You've been promoted to Admin status!")
         status = 'admin'
     if 'builder' in args_ and 'builder' not in target.capability:
         target.capability.append('builder')
-        await target.write("You've been promoted to Builder status!")
+        buffer_target.add("You've been promoted to Builder status!")
         status = 'builder'
     if 'deity' in args_ and 'deity' not in target.capability:
         target.capability.append('deity')
-        await target.write("You've been promoted to Deity status!")
+        buffer_target.add("You've been promoted to Deity status!")
         status = 'deity'
+
+    await buffer_target.write()
 
     target.save()
 
-    await caller.write(f"You have promoted {target.name} to {status} status!")
+    buffer.add(f"You have promoted {target.name} to {status} status!")
+    await buffer.write()
 
 

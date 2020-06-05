@@ -23,18 +23,23 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def stand(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.position == "standing":
-        await caller.write("You are already standing")
+        buffer.add("You are already standing")
+        await buffer.write()
         return
     elif caller.position == "sitting":
         caller.position = "standing"
-        await caller.write("You stand up.")
+        buffer.add("You stand up.")
+        await buffer.write()
         message = f"{caller.disp_name} stands up."
         await comm.message_to_room(caller.location, caller, message)
         return
     elif caller.position == "sleeping":
         caller.position = "standing"
-        await caller.write("You awaken and stand up.")
+        buffer.add("You awaken and stand up.")
+        await buffer.write()
         message = f"{caller.disp_name} stands up."
         await comm.message_to_room(caller.location, caller, message)
         await caller.interp("look")

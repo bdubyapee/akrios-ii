@@ -23,10 +23,13 @@ requirements = {'capability': ['admin'],
 
 @Command(**requirements)
 async def shutdown(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     log.debug('Entering shutdown command')
     for each_player in player.playerlist:
         if each_player.is_building or each_player.is_editing:
-            await caller.write(f"{each_player.disp_name} is Building right now! No Shutdown for you!")
+            buffer.add(f"{each_player.disp_name} is Building right now! No Shutdown for you!")
+            await buffer.write()
             return
     log.debug('shutdown command just before awaiting put to queue.')
     asyncio.create_task(status.server_shutdown.put('shutdown'))

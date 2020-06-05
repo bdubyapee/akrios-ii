@@ -23,20 +23,22 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def sit(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if hasattr(caller, "position"):
         if caller.position == "sitting":
-            await caller.write("You are already sitting")
-            return
+            buffer.add("You are already sitting")
+            await buffer.write()
         elif caller.position == "standing":
             caller.position = "sitting"
-            await caller.write("You sit down.")
+            buffer.add("You sit down.")
+            await buffer.write()
             message = f"{caller.disp_name} sits down."
             await comm.message_to_room(caller.location, caller, message)
-            return
         elif caller.position == "sleeping":
             caller.position = "sitting"
-            await caller.write("You wake up and begin sitting")
+            buffer.add("You wake up and begin sitting")
+            await buffer.write()
             message = f"{caller.disp_name} sits up and looks around."
             await comm.message_to_room(caller.location, caller, message)
             await caller.interp("look")
-            return

@@ -21,13 +21,16 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def quote(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.is_player and caller.oocflags_stored['quote'] == 'false':
-        await caller.write("You have the Quote channel disabled. Use the {Wtoggle{x command to enable it.")
+        buffer.add("You have the Quote channel disabled. Use the {Wtoggle{x command to enable it.")
+        await buffer.write()
         return
 
     target_list = kwargs['target']
     args_ = kwargs['post']
-    
+
     for person in target_list:
         if person.oocflags_stored['quote'] == 'false':
             continue
@@ -37,4 +40,7 @@ async def quote(caller, args, **kwargs):
         else:
             name_ = '\n\r' + caller.disp_name
             plural = 's'
-        await person.write(f"{{y{name_} Quote{plural}: '{args_[:300]}'{{x")
+
+        buffer_target = outbuffer.OutBuffer(person)
+        buffer_target.add(f"{{y{name_} Quote{plural}: '{args_[:300]}'{{x")
+        await buffer_target.write()

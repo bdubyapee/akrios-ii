@@ -20,8 +20,10 @@ requirements = {'capability': ['builder'],
 
 @Command(**requirements)
 async def raceslist(caller, args, **kwargs):
-    await caller.write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Races=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-    await caller.write("")
+    buffer = outbuffer.OutBuffer(caller)
+
+    buffer.add("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Races=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    buffer.add("")
 
     race_names = [each_race.capitalize() for each_race in races.racesdict.keys()]
     race_names.sort()
@@ -32,4 +34,7 @@ async def raceslist(caller, args, **kwargs):
         output = ''
         for l in range(0, numcols):
             output = f"{output}{race_names[i+l]:12}"
-        await caller.write(output)
+        buffer.add(output)
+
+    await buffer.write()
+

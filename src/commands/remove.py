@@ -31,9 +31,11 @@ async def remove(caller, args, **kwargs):
 
     target = None
     args = args.lower()
+    buffer = outbuffer.OutBuffer(caller)
    
     if not args:
-        await caller.write("What would you like to remove?")
+        buffer.add("What would you like to remove?")
+        await buffer.write()
         return
  
     if ' from ' in args:
@@ -60,20 +62,25 @@ async def remove(caller, args, **kwargs):
                 location = each_loc
 
     if target is None:
-        await caller.write(f"You don't seem to be wearing a {args}.")
+        buffer.add(f"You don't seem to be wearing a {args}.")
+        await buffer.write()
         return
 
     if location is not None and location not in caller.equipped:
-        await caller.write(f"You cannot remove something from a wear location you don't have.")
+        buffer.add(f"You cannot remove something from a wear location you don't have.")
+        await buffer.write()
         return
 
     if location is not None and caller.equipped[location] is None:
-        await caller.write(f"You are not wearing anything on your {location}")
+        buffer.add(f"You are not wearing anything on your {location}")
+        await buffer.write()
         return
 
     if location:
         caller.equipped[location] = None
-        await caller.write(f"You remove a {target.disp_name} from your {location}")
+        buffer.add(f"You remove a {target.disp_name} from your {location}")
+        await buffer.write()
         await comm.message_to_room(caller.location, caller, f"{caller.disp_name} removes a {target.disp_name}")
     else:
-        await caller.write("Error remove {target.disp_name} from {location}.")
+        buffer.add("Error remove {target.disp_name} from {location}.")
+        await buffer.write()

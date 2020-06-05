@@ -25,40 +25,42 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def toggle(caller, args):
+    buffer = outbuffer.OutBuffer(caller)
+    
     if args == 'grapevine':
         if caller.oocflags_stored['grapevine'] == 'true':
             caller.oocflags_stored['grapevine'] = 'false'
-            await caller.write("\n\r{WGrapevine System disabled.{x")
+            buffer.add("\n\r{WGrapevine System disabled.{x")
         else:
             caller.oocflags_stored['grapevine'] = 'true'
-            await caller.write("\n\r{WGrapevine System enabled.{x")
+            buffer.add("\n\r{WGrapevine System enabled.{x")
 
     if args == 'ooc':
         if caller.oocflags_stored['ooc'] == 'true':
             caller.oocflags_stored['ooc'] = 'false'
-            await caller.write("\n\r{WOOC Channel disabled.{x")
+            buffer.add("\n\r{WOOC Channel disabled.{x")
         else:
             caller.oocflags_stored['ooc'] = 'true'
-            await caller.write("\n\r{WOOC Channel enabled.{x")
+            buffer.add("\n\r{WOOC Channel enabled.{x")
 
     if args == 'quote':
         if caller.oocflags_stored['quote'] == 'true':
             caller.oocflags_stored['quote'] = 'false'
-            await caller.write("\n\r{WQuote Channel disabled.{x")
+            buffer.add("\n\r{WQuote Channel disabled.{x")
         else:
             caller.oocflags_stored['quote'] = 'true'
-            await caller.write("\n\r{WQuote Channel enabled.{x")
+            buffer.add("\n\r{WQuote Channel enabled.{x")
 
     if caller.is_admin:
         if args == 'log debug':
             if logging.getLevelName(logging.root.getEffectiveLevel()) == "INFO":
                 logging.root.setLevel("DEBUG")
                 log.warning(f"{caller.name.capitalize()} Changed log level to DEBUG")
-                await caller.write("\n\r{WSystem level debug has been enabled.{x")
+                buffer.add("\n\r{WSystem level debug has been enabled.{x")
             else:
                 logging.root.setLevel("INFO")
                 log.warning(f"{caller.name.capitalize()} Changed log level to INFO")
-                await caller.write("\n\r{WSystem level debug has been disabled.{x")
+                buffer.add("\n\r{WSystem level debug has been disabled.{x")
 
     if caller.oocflags_stored['grapevine'] == 'true':
         grapevine_ = "Enabled"
@@ -75,10 +77,12 @@ async def toggle(caller, args):
     else:
         quote_ = "Disabled"
 
-    await caller.write("\n\rCurrently available settings to toggle:")
-    await caller.write(f"    {{Wgrapevine{{x : {{R{grapevine_}{{x")
-    await caller.write(f"    {{Wooc{{x    : {{R{ooc_}{{x")
-    await caller.write(f"    {{Wquote{{x  : {{R{quote_}{{x")
-    await caller.write(f"")
+    buffer.add("\n\rCurrently available settings to toggle:")
+    buffer.add(f"    {{Wgrapevine{{x : {{R{grapevine_}{{x")
+    buffer.add(f"    {{Wooc{{x    : {{R{ooc_}{{x")
+    buffer.add(f"    {{Wquote{{x  : {{R{quote_}{{x")
+    buffer.add(f"")
     if caller.is_admin:
-        await caller.write(f"    {{Wlog debug{{x : {{R{logging.getLevelName(log.getEffectiveLevel())}{{x")
+        buffer.add(f"    {{Wlog debug{{x : {{R{logging.getLevelName(log.getEffectiveLevel())}{{x")
+
+    await buffer.write()

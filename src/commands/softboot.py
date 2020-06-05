@@ -23,9 +23,12 @@ requirements = {'capability': ['admin'],
 
 @Command(**requirements)
 async def softboot(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     for each_player in player.playerlist:
         if each_player.is_building or each_player.is_editing:
-            await caller.write(f"{each_player.disp_name} is Building right now! No Softboot for you!")
+            buffer.add(f"{each_player.disp_name} is Building right now! No Softboot for you!")
+            await buffer.write()
             return
 
     asyncio.create_task(status.server_shutdown.put('softboot'))

@@ -22,8 +22,11 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def ooc(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.oocflags_stored['ooc'] == 'false':
-        await caller.write("You have the OOC channel disabled.  Use the {Wtoggle{x command to enable it.")
+        buffer.add("You have the OOC channel disabled.  Use the {Wtoggle{x command to enable it.")
+        await buffer.write()
         return
 
     target_list = kwargs['target']
@@ -38,4 +41,7 @@ async def ooc(caller, args, **kwargs):
             name_ = caller.disp_name
             plural = 's'
             name_ = '' + name_
-        await person.write(f"{{B{name_} OOC{plural}: '{args_[:300]}'")
+
+        buffer_target = outbuffer.OutBuffer(person)
+        buffer_target.add(f"{{B{name_} OOC{plural}: '{args_[:300]}'")
+        await buffer_target.write()

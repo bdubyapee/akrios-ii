@@ -22,10 +22,12 @@ requirements = {'capability': ['builder'],
 async def roomedit(caller, args, **kwargs):
     helpstring = "Please see {Whelp roomedit{x for instructions."
     args = args.split()
+    buffer = outbuffer.OutBuffer(caller)
 
     if len(args) == 0:
         if caller.is_building and not caller.is_editing:
-            await caller.write(caller.building.display())
+            buffer.add(caller.building.display())
+            await buffer.write()
             return
 
     if caller.is_building and caller.is_editing:
@@ -58,12 +60,14 @@ async def roomedit(caller, args, **kwargs):
             caller.prompt = caller.oldprompt
             del caller.oldprompt
         elif args[0] == 'new':
-            await caller.write("You are already editing a room.")
+            buffer.add("You are already editing a room.")
+            await buffer.write()
             return
         elif args[0] in caller.building.commands:
             caller.building.doAttrib(args[0], ' '.join(args[1:]))
         else:
-            await caller.write(helpstring)
+            buffer.add(helpstring)
+            await buffer.write()
     else:
         myvnum = 0
         try:
@@ -74,12 +78,14 @@ async def roomedit(caller, args, **kwargs):
             if "room" in caller.location.capability:
                 caller.building = caller.location
                 caller.building.builder = caller
-                await caller.write(f"Editing {{W{caller.location.vnum}{{x")
+                buffer.add(f"Editing {{W{caller.location.vnum}{{x")
                 caller.oldprompt = caller.prompt
                 caller.prompt = "roomEdit:> "
-                await caller.write(caller.building.display())
+                buffer.add(caller.building.display())
+                await buffer.write()
             else:
-                await caller.write("Your location does not appear to be a regular room.")
+                buffer.add("Your location does not appear to be a regular room.")
+                await buffer.write()
                 return
         elif args[0] == 'new':
             if len(args) != 2:
@@ -89,46 +95,55 @@ async def roomedit(caller, args, **kwargs):
                 try:
                     myvnum = int(args[1])
                 except Exception as err:
-                    await caller.write(f"Vnum argument must be an integer, not: {err}")
+                    buffer.add(f"Vnum argument must be an integer, not: {err}")
+                    await buffer.write()
                     return
                 if myvnum < myarea.vnumrange[0] or myvnum > myarea.vnumrange[1]:
-                    await caller.write("That vnum is not in this areas range!")
+                    buffer.add("That vnum is not in this areas range!")
+                    await buffer.write()
                     return
                 if myvnum in myarea.roomlist:
-                    await caller.write("That room already exists.  Please edit it directly.")
+                    buffer.add("That room already exists.  Please edit it directly.")
+                    await buffer.write()
                     return
                 else:
                     newroom = room.Room(caller.location.area, vnum=myvnum)
                     caller.building = newroom
                     newroom.area.roomlist[myvnum] = newroom
                     caller.building.builder = caller
-                    await caller.write(f"Editing {{W{args[1]}{{x")
+                    buffer.add(f"Editing {{W{args[1]}{{x")
+                    await buffer.write()
                     caller.oldprompt = caller.prompt
                     caller.prompt = "roomEdit:> "
                     caller.location = caller.building
         elif args[0] == 'save':
             caller.location.area.save()
-            await caller.write("Area has been saved.")
+            buffer.add("Area has been saved.")
+            await buffer.write()
         elif args[0] == 'delete':
             try:
                 myvnum = int(args[1])
             except Exception as err:
-                await caller.write(f"Vnum argument must be an integer, not: {err}")
+                buffer.add(f"Vnum argument must be an integer, not: {err}")
+                await buffer.write()
                 return
             if myvnum in caller.location.area.roomlist:
                 newroom = area.room_by_vnum_global(1)
                 for thing in caller.location.area.roomlist[myvnum].contents:
                     thing.move(newroom, None, "goto")
                 caller.location.area.roomlist.pop(myvnum)
-                await caller.write(f"Room {myvnum} deleted.")
+                buffer.add(f"Room {myvnum} deleted.")
+                await buffer.write()
         elif myvnum in caller.location.area.roomlist:
             caller.building = caller.location.area.roomlist[int(args[0])]
             caller.building.builder = caller
-            await caller.write(f"Editing room: {{W{args[0]}{{x.")
-            await caller.write(helpstring)
+            buffer.add(f"Editing room: {{W{args[0]}{{x.")
+            buffer.add(helpstring)
             caller.oldprompt = caller.prompt
             caller.prompt = "roomEdit:> "
             caller.location = caller.building
-            await caller.write(caller.building.display())
+            buffer.add(caller.building.display())
+            await buffer.write()
         else:
-            await caller.write(helpstring)
+            buffer.add(helpstring)
+            await buffer.write()

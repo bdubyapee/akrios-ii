@@ -21,26 +21,33 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def open(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if args in caller.location.exits:
         exit_ = caller.location.exits[args]
         if exit_.destination in caller.location.area.roomlist:
             # Does the exit have a door and is it closed?
             if exit_.hasdoor == 'true':
                 if exit_.dooropen == 'true':
-                    await caller.write("The door in that direction is already open.")
+                    buffer.add("The door in that direction is already open.")
+                    await buffer.write()
                     return
                 if exit_.locked == 'true' or exit_.magiclocked == 'true':
-                    await caller.write("It won't open!")
+                    buffer.add("It won't open!")
+                    await buffer.write()
                     return
                 exit_.dooropen = 'true'
-                await caller.write(f"You open the {exit_.keywords[0]}.")
+                buffer.add(f"You open the {exit_.keywords[0]}.")
+                await buffer.write()
                 return
             else:
-                await caller.write("There is no door in that direction")
+                buffer.add("There is no door in that direction")
+                await buffer.write()
                 return
         else:
             # ReWrite here for exiting areas into the map and/or other areas.
-            await caller.write("That exit appears to be broken!")
+            buffer.add("That exit appears to be broken!")
+            await buffer.write()
     else:
-        await caller.write("There is no door in that direction")
-
+        buffer.add("There is no door in that direction")
+        await buffer.write()

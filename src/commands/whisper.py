@@ -24,5 +24,10 @@ requirements = {'capability': ['player', 'mobile', 'object'],
 async def whisper(caller, args, **kwargs):
     target = kwargs['target']
     message = kwargs['post']
-    await target.write(f"\n\r{{g{caller.disp_name} whispers to you, '{message}'{{x.")
-    await caller.write(f"\n\r{{gYou whisper to {target.disp_name}, '{message}'{{x.")
+    buffer = outbuffer.OutBuffer(caller)
+    buffer_target = outbuffer.OutBuffer(target)
+
+    buffer_target.add(f"\n\r{{g{caller.disp_name} whispers to you, '{message}'{{x.")
+    await buffer_target.write()
+    buffer.add(f"\n\r{{gYou whisper to {target.disp_name}, '{message}'{{x.")
+    await buffer.write()

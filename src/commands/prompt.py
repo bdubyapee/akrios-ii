@@ -21,5 +21,8 @@ requirements = {'capability': ['player'],
 @Command(**requirements)
 async def prompt(caller, args, **kwargs):
     caller.prompt = args[:50]
-    await caller.write('{xYour prompt has been configured.')
+    buffer = outbuffer.OutBuffer(caller)
+
+    buffer.add('{xYour prompt has been configured.')
+    await buffer.write()
 

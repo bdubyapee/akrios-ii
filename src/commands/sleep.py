@@ -23,12 +23,14 @@ requirements = {'capability': ['player', 'mobile'],
 
 @Command(**requirements)
 async def sleep(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.position == "sleeping":
-        await caller.write("You are already sleeping.")
-        return
+        buffer.add("You are already sleeping.")
+        await buffer.write()
     elif caller.position == "standing" or caller.position == "sitting":
         caller.position = "sleeping"
-        await caller.write("You lay down and go to sleep.")
+        buffer.add("You lay down and go to sleep.")
+        await buffer.write()
         message = f"{caller.disp_name} lays down to sleep."
         await comm.message_to_room(caller.location, caller, message)
-        return

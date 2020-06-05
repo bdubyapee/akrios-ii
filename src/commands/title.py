@@ -21,4 +21,8 @@ requirements = {'capability': ['player'],
 @Command(**requirements)
 async def title(caller, args, **kwargs):
     caller.title = args[:50]
-    await caller.write('{xYour title has been set.')
+    buffer = outbuffer.OutBuffer(caller)
+
+    buffer.add('{xYour title has been set.')
+    await buffer.write()
+

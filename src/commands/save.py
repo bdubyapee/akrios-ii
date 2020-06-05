@@ -21,5 +21,8 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def save(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     caller.save()
-    await caller.write("Saved.  Your character is also automatically saved every 5 minutes.")
+    buffer.add("Saved.  Your character is also automatically saved every 5 minutes.")
+    await buffer.write()

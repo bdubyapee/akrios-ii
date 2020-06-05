@@ -22,8 +22,11 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def quit(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.is_building or caller.is_editing: 
-        await caller.write("You must finish building first!")
+        buffer.add("You must finish building first!")
+        await buffer.write()
         return
 
     caller.save()

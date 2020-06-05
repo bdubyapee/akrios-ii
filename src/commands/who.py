@@ -23,7 +23,7 @@ requirements = {'capability': ['player'],
 
 @Command(**requirements)
 async def who(caller, args, **kwargs):
-    buffer = outbuffer.OutBuffer()
+    buffer = outbuffer.OutBuffer(caller)
 
     buffer.add("       {W,         {W/|\\")
     buffer.add("       {W|\        {W|{PO{W|{D________________________________________________")
@@ -85,7 +85,7 @@ async def who(caller, args, **kwargs):
                 buffer.add("")
         else:
             buffer.add(f"{game_name} is not connected to Grapevine.")
-            await caller.write(buffer)
+            await buffer.write()
             return
 
-    await caller.write(buffer)
+    await buffer.write()

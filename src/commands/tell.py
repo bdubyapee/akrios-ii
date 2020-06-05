@@ -24,5 +24,12 @@ requirements = {'capability': ['player', 'mobile'],
 async def tell(caller, args, **kwargs):
     target = kwargs['target']
     message = kwargs['post']
-    await target.write(f"\n\r{{y{caller.disp_name} tells you, '{message}'{{x.")
-    await caller.write(f"\n\r{{yYou tell {target.disp_name}, '{message}'{{x.")
+    buffer = outbuffer.OutBuffer(caller)
+    buffer_target = outbuffer.OutBuffer(target)
+
+    buffer_target.add(f"\n\r{{y{caller.disp_name} tells you, '{message}'{{x.")
+    await buffer_target.write()
+
+    buffer.add(f"\n\r{{yYou tell {target.disp_name}, '{message}'{{x.")
+    await buffer.write()
+

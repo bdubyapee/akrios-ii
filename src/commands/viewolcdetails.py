@@ -20,9 +20,14 @@ requirements = {'capability': ['builder'],
 
 @Command(**requirements)
 async def viewolcdetails(caller, args, **kwargs):
+    buffer = outbuffer.OutBuffer(caller)
+
     if caller.oocflags['viewOLCdetails'] is True:
         caller.oocflags['viewOLCdetails'] = False
-        await caller.write("You will no longer see OLC details.")
+        buffer.add("You will no longer see OLC details.")
     else:
         caller.oocflags['viewOLCdetails'] = True
-        await caller.write("You will now see OLC details.")
+        buffer.add("You will now see OLC details.")
+
+    await buffer.write()
+

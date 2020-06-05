@@ -31,9 +31,11 @@ async def wear(caller, args, **kwargs):
     target = None
     location = None
     args = args.lower()
+    buffer = outbuffer.OutBuffer(caller)
 
     if not args:
-        await caller.write("What would you like to wear?")
+        buffer.add("What would you like to wear?")
+        await buffer.write()
         return
 
     if ' on ' in args:
@@ -41,8 +43,9 @@ async def wear(caller, args, **kwargs):
         target_text = target_text.strip()
         location = location.strip()
     else:
-        await caller.write("Please specify where to wear it.")
-        await caller.write("Example: wear helmet on head.")
+        buffer.add("Please specify where to wear it.")
+        buffer.add("Example: wear helmet on head.")
+        await buffer.write()
         return
 
     for aid, object_ in caller.contents.items():
@@ -56,25 +59,32 @@ async def wear(caller, args, **kwargs):
                 break
 
     if target is None:
-        await caller.write(f"You don't seem to have a {args}.")
+        buffer.add(f"You don't seem to have a {args}.")
+        await buffer.write()
         return
 
     if location not in caller.equipped:
-        await caller.write(f"You cannot wear something on a wear location you don't have.")
+        buffer.add(f"You cannot wear something on a wear location you don't have.")
+        await buffer.write()
         return
 
     if location is not None and caller.equipped[location] is not None:
-        await caller.write(f"You are already wearing something in that location.")
+        buffer.add(f"You are already wearing something in that location.")
+        await buffer.write()
         return
 
     if location not in target.allowable_wear_loc:
-        await caller.write(f"You cannot wear a {args} there!")
+        buffer.add(f"You cannot wear a {args} there!")
+        await buffer.write()
         return
 
     caller.equipped[location] = target.aid
+
     if 'hand' in location:
-        await caller.write(f"You hold a {target.disp_name} in your {location}")
+        buffer.add(f"You hold a {target.disp_name} in your {location}")
         await comm.message_to_room(caller.location, caller, f"{caller.disp_name} holds a {target.disp_name}.")
     else:
-        await caller.write(f"You wear a {target.disp_name} on your {location}.")
+        buffer.add(f"You wear a {target.disp_name} on your {location}.")
         await comm.message_to_room(caller.location, caller, f"{caller.disp_name} wears a {target.disp_name}.")
+
+    await buffer.write()

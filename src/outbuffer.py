@@ -16,12 +16,16 @@
 
 
 class OutBuffer:
-    def __init__(self):
+    def __init__(self, caller):
         self.output = []
+        self.caller = caller
 
     def add(self, data):
         self.output.append(data)
         self.output.append('\n\r')
+
+    async def write(self):
+        await self.caller.write(f'{"".join(self.output)}\n\r')
 
     def __repr__(self):
         return f'{"".join(self.output)}\n\r'
