@@ -52,6 +52,7 @@ class Session(object):
         self.promptable = False
         self.in_buf = asyncio.Queue()
         self.out_buf = asyncio.Queue()
+        self.page_buf = asyncio.Queue()
         self.state = {'connected': True,
                       'link dead': False,
                       'logged in': False}

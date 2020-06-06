@@ -27,9 +27,8 @@ class OutBuffer:
     async def write(self):
         await self.caller.write(f'{"".join(self.output)}')
 
-    def __repr__(self):
-        return f'{"".join(self.output)}\n\r'
-
-    @property
     def num_lines(self):
         return len(self.output)
+
+    def __repr__(self):
+        return f'{"".join(self.output)}\n\r'

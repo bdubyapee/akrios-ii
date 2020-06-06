@@ -40,10 +40,13 @@ class Player(livingthing.LivingThing):
         self.oocflags = {'afk': False,
                          'viewOLCdetails': False,
                          'coding': False,
-                         'grapevine_channels': ['gossip']}
+                         'grapevine_channels': ['gossip'],
+                         'is_paginating': False}
         self.oocflags_stored = {'newbie': 'true',
                                 'grapevine': 'true',
                                 'ooc': 'true',
+                                'paginate': 'true',
+                                'page length': 24,
                                 'quote': 'true'}
         self.sock = None
         self.uuid = ''
