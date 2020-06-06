@@ -148,12 +148,15 @@ class Session(object):
         if self.state['logged in']:
             if hasattr(self.owner, "editing"):
                 await self.out_buf.put(">")
-            elif self.promptable:
+            elif self.promptable and not self.owner.oocflags["is_paginating"]:
                 if self.owner.oocflags["afk"]:
                     pretext = '{W[{RAFK{W]{x '
                 else:
                     pretext = ''
                 output = color.colorize(f'{pretext}{self.owner.prompt}{{x')
+                await self.out_buf.put((output, "true"))
+            else:
+                output = 'Paginating output: {Wenter{x to continue, {Wq{x to exit paginate display'
                 await self.out_buf.put((output, "true"))
 
     async def send(self):
