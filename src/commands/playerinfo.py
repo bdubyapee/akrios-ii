@@ -23,6 +23,6 @@ async def playerinfo(caller, args):
     buffer = outbuffer.OutBuffer(caller)
 
     for person in player.playerlist:
-        buffer.add(f"Player: {person.disp_name:15} Host: {person.sock.host:15} ")
+        buffer.add(f"Player: {person.disp_name:15} Host: {person.sock.host:15} Rows: {person.sock.rows} ")
 
     await buffer.write()

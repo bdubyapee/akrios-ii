@@ -51,6 +51,14 @@ async def toggle(caller, args):
             caller.oocflags_stored['quote'] = 'true'
             buffer.add("\n\r{WQuote Channel enabled.{x")
 
+    if args == 'paginate':
+        if caller.oocflags_stored['paginate'] == 'true':
+            caller.oocflags_stored['paginate'] = 'false'
+            buffer.add("\n\r{WPaginate function disabled.{x")
+        else:
+            caller.oocflags_stored['paginate'] = 'true'
+            buffer.add("\n\r{WPaginate function enabled.{x")
+
     if caller.is_admin:
         if args == 'log debug':
             if logging.getLevelName(logging.root.getEffectiveLevel()) == "INFO":
@@ -77,10 +85,16 @@ async def toggle(caller, args):
     else:
         quote_ = "Disabled"
 
+    if caller.oocflags_stored['paginate'] == 'true':
+        paginate_ = "Enabled"
+    else:
+        paginate_ = "Disabled"
+
     buffer.add("\n\rCurrently available settings to toggle:")
     buffer.add(f"    {{Wgrapevine{{x : {{R{grapevine_}{{x")
     buffer.add(f"    {{Wooc{{x    : {{R{ooc_}{{x")
     buffer.add(f"    {{Wquote{{x  : {{R{quote_}{{x")
+    buffer.add(f"    {{Wpaginate{{x  : {{R{paginate_}{{x")
     buffer.add(f"")
     if caller.is_admin:
         buffer.add(f"    {{Wlog debug{{x : {{R{logging.getLevelName(log.getEffectiveLevel())}{{x")

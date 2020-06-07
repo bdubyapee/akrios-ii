@@ -63,6 +63,9 @@ class Atomic(object):
                 self.editing.add('')
                 return
             else:
+                if self.oocflags['is_paginating'] == 'true' and len(self.sock.out_buf):
+                    output, self.sock.page_buf = self.sock.page_buf[:self.sock.rows], self.sock.page_buf[self.sock.rows:]
+                    await self.sock.write('\n\r'.join(output))
                 await self.sock.send_prompt()
                 return
 

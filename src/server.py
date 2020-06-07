@@ -43,7 +43,7 @@ class Session(object):
     Each session will have a bevy of normal attributes as well as an inbound and outbound buffer, which are
     asyncio.Queues.  We also create any tasks that are specific to the session.
     """
-    def __init__(self, uuid, address, port):
+    def __init__(self, uuid, address, port, rows):
         self.owner = None
         self.host = address
         self.port = port
@@ -52,7 +52,8 @@ class Session(object):
         self.promptable = False
         self.in_buf = asyncio.Queue()
         self.out_buf = asyncio.Queue()
-        self.page_buf = asyncio.Queue()
+        self.page_buf = []
+        self.rows = rows
         self.state = {'connected': True,
                       'link dead': False,
                       'logged in': False}
@@ -148,7 +149,7 @@ class Session(object):
         if self.state['logged in']:
             if hasattr(self.owner, "editing"):
                 await self.out_buf.put(">")
-            elif self.promptable and not self.owner.oocflags["is_paginating"]:
+            elif self.promptable and self.owner.oocflags["is_paginating"] == 'false':
                 if self.owner.oocflags["afk"]:
                     pretext = '{W[{RAFK{W]{x '
                 else:
@@ -256,8 +257,8 @@ async def cmd_fe_client_connected(options):
     We have received a client connected notification from the front end.  Create a session and begin a login
     session.
     """
-    uuid, address, port = options
-    session = Session(uuid, address, port)
+    uuid, address, port, rows = options
+    session = Session(uuid, address, port, rows)
     asyncio.create_task(session.login())
 
 

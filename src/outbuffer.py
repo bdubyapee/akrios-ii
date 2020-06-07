@@ -25,7 +25,13 @@ class OutBuffer:
         self.output.append('\n\r')
 
     async def write(self):
-        await self.caller.write(f'{"".join(self.output)}')
+        if self.caller.oocflags_stored['paginate'] == 'true':
+            if self.num_lines() > self.caller.sock.rows:
+                self.caller.oocflags['is_paginating'] = True
+                self.caller.sock.page_buf = self.output[self.caller.sock.rows:]
+                await self.caller.write(f'{"".join(self.output[:self.caller.sock.rows])}')
+        else:
+            await self.caller.write(f'{"".join(self.output)}')
 
     def num_lines(self):
         return len(self.output)
