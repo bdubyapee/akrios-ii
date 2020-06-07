@@ -52,6 +52,17 @@ class Atomic(object):
             self.oocflags['afk'] = False
             self.last_input = time.time()
 
+        if self.oocflags['is_paginating']:
+            if inp[0] == 'x':
+                self.sock.page_buf = []
+                self.oocflags['is_paginating'] = False
+            else:
+                output, self.sock.page_buf = self.sock.page_buf[:self.sock.rows], self.sock.page_buf[self.sock.rows:]
+                await self.sock.write('\n\r'.join(output))
+                if not len(self.sock.page_buf):
+                    self.oocflags['is_paginating'] = False
+            return
+
         is_building = hasattr(self, 'building')
         is_editing = hasattr(self, 'editing')
 
@@ -63,9 +74,6 @@ class Atomic(object):
                 self.editing.add('')
                 return
             else:
-                if self.oocflags['is_paginating'] and len(self.sock.out_buf):
-                    output, self.sock.page_buf = self.sock.page_buf[:self.sock.rows], self.sock.page_buf[self.sock.rows:]
-                    await self.sock.write('\n\r'.join(output))
                 await self.sock.send_prompt()
                 return
 
