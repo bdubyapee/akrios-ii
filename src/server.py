@@ -53,7 +53,7 @@ class Session(object):
         self.in_buf = asyncio.Queue()
         self.out_buf = asyncio.Queue()
         self.page_buf = []
-        self.rows = rows
+        self.rows = int(rows)
         self.state = {'connected': True,
                       'link dead': False,
                       'logged in': False}
@@ -149,7 +149,7 @@ class Session(object):
         if self.state['logged in']:
             if hasattr(self.owner, "editing"):
                 await self.out_buf.put(">")
-            elif self.promptable and self.owner.oocflags["is_paginating"] == 'false':
+            elif self.promptable and not self.owner.oocflags["is_paginating"]:
                 if self.owner.oocflags["afk"]:
                     pretext = '{W[{RAFK{W]{x '
                 else:
