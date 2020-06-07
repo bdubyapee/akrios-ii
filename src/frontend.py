@@ -60,8 +60,9 @@ async def received_client_connected(payload) -> None:
     uuid = payload['uuid']
     addr = payload['addr']
     port = payload['port']
+    rows = payload['rows']
 
-    asyncio.create_task(commands_to_game.put(('client_connected', (uuid, addr, port))))
+    asyncio.create_task(commands_to_game.put(('client_connected', (uuid, addr, port, rows))))
 
 
 async def received_client_disconnected(payload) -> None:

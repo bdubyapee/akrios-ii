@@ -1,4 +1,4 @@
-#AkriosMUD
+##AkriosMUD
 
 The ultimate goal of AkriosMUD is to provide a Python base with the old school feel
 of DIKU derivative MUDs.
