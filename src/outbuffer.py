@@ -36,7 +36,7 @@ class OutBuffer:
             await self.caller.write(f'{"".join(self.output)}')
 
     def num_lines(self):
-        return len(self.output) // 2
+        return (len(self.output) // 2) + 4
 
     def __repr__(self):
         return f'{"".join(self.output)}\n\r'

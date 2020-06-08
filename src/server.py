@@ -149,7 +149,11 @@ class Session(object):
         if self.state['logged in']:
             if hasattr(self.owner, "editing"):
                 await self.out_buf.put(">")
-            elif self.promptable and not self.owner.oocflags["is_paginating"]:
+                return
+
+            log.info(f'in send_prompt: is_paginating is {self.owner.oocflags["is_paginating"]}')
+            log.info(f'page_buf is {self.page_buf}')
+            if self.promptable and not self.owner.oocflags["is_paginating"]:
                 if self.owner.oocflags["afk"]:
                     pretext = '{W[{RAFK{W]{x '
                 else:
@@ -158,7 +162,6 @@ class Session(object):
                 await self.out_buf.put((output, "true"))
             else:
                 output = color.colorize('Paginating output: {Wenter{x to continue, {Wq{x to exit paginate display\n\r')
-                output = f'{output} [ROWS: {self.rows}]'
                 await self.out_buf.put((output, "true"))
 
     async def send(self):
