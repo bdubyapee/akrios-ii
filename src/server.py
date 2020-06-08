@@ -158,6 +158,7 @@ class Session(object):
                 await self.out_buf.put((output, "true"))
             else:
                 output = color.colorize('Paginating output: {Wenter{x to continue, {Wq{x to exit paginate display\n\r')
+                output = f'{output} [ROWS: {self.rows}]'
                 await self.out_buf.put((output, "true"))
 
     async def send(self):

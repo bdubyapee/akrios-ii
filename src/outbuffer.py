@@ -9,10 +9,13 @@
 """
 
 # Standard Library
+import logging
 
 # Third Party
 
 # Project
+
+log = logging.getLogger(__name__)
 
 
 class OutBuffer:
@@ -33,7 +36,7 @@ class OutBuffer:
             await self.caller.write(f'{"".join(self.output)}')
 
     def num_lines(self):
-        return len(self.output)
+        return len(self.output) // 2
 
     def __repr__(self):
         return f'{"".join(self.output)}\n\r'
