@@ -157,7 +157,7 @@ class Session(object):
                 output = color.colorize(f'{pretext}{self.owner.prompt}{{x')
                 await self.out_buf.put((output, "true"))
             else:
-                output = 'Paginating output: {Wenter{x to continue, {Wq{x to exit paginate display'
+                output = color.colorize('Paginating output: {Wenter{x to continue, {Wq{x to exit paginate display\n\r')
                 await self.out_buf.put((output, "true"))
 
     async def send(self):

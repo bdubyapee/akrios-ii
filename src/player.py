@@ -46,7 +46,6 @@ class Player(livingthing.LivingThing):
                                 'grapevine': 'true',
                                 'ooc': 'true',
                                 'paginate': 'true',
-                                'page length': 24,
                                 'quote': 'true'}
         self.sock = None
         self.uuid = ''

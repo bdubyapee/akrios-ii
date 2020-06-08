@@ -52,15 +52,18 @@ class Atomic(object):
             self.oocflags['afk'] = False
             self.last_input = time.time()
 
-        if self.oocflags['is_paginating']:
-            if inp[0] == 'x':
-                self.sock.page_buf = []
-                self.oocflags['is_paginating'] = False
-            else:
+        if self.is_player and self.oocflags['is_paginating']:
+            log.debug(f'Inside interp: we are paginating. inp is {inp}')
+            if not inp:
                 output, self.sock.page_buf = self.sock.page_buf[:self.sock.rows], self.sock.page_buf[self.sock.rows:]
-                await self.sock.write('\n\r'.join(output))
+                await self.write(''.join(output))
                 if not len(self.sock.page_buf):
                     self.oocflags['is_paginating'] = False
+                    await self.sock.send_prompt()
+            elif inp[0] == 'q':
+                self.sock.page_buf = []
+                self.oocflags['is_paginating'] = False
+                await self.sock.send_prompt()
             return
 
         is_building = hasattr(self, 'building')
