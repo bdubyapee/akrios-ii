@@ -53,7 +53,7 @@ class Session(object):
         self.in_buf = asyncio.Queue()
         self.out_buf = asyncio.Queue()
         self.page_buf = []
-        self.rows = int(rows)
+        self.rows = int(rows) - 10
         self.state = {'connected': True,
                       'link dead': False,
                       'logged in': False}
