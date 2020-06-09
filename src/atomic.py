@@ -54,8 +54,9 @@ class Atomic(object):
 
         if self.is_player and self.oocflags['is_paginating']:
             log.debug(f'Inside interp: we are paginating. inp is {inp}')
+            log.info(f'Inside interp: page_buf ({len(self.sock.page_buf)}) is\n {self.sock.page_buf}')
             if not inp or inp[0] != 'q':
-                output, self.sock.page_buf = self.sock.page_buf[:self.sock.rows], self.sock.page_buf[self.sock.rows:]
+                output, self.sock.page_buf = self.sock.page_buf[:self.sock.rows * 2], self.sock.page_buf[self.sock.rows * 2:]
                 await self.write(''.join(output))
                 if len(self.sock.page_buf) <= 0:
                     self.oocflags['is_paginating'] = False
