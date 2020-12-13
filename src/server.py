@@ -161,7 +161,7 @@ class Session(object):
                 output = color.colorize(f'{pretext}{self.owner.prompt}{{x')
                 await self.out_buf.put((output, "true"))
             else:
-                output = color.colorize('Paginating output: {Wenter{x to continue, {Wq{x to exit paginate display\n\r')
+                output = color.colorize('Paginating output: {Genter{x to continue, {Gq{x to exit paginate display\n\r')
                 await self.out_buf.put((output, "true"))
 
     async def send(self):
@@ -284,8 +284,8 @@ async def cmd_fe_game_load_players(options):
     are connected and their session so that we can auto-log them in.
     """
     for session in options:
-        name, address, port = options[session]
-        session = Session(session, address, port)
+        name, address, port, rows = options[session]
+        session = Session(session, address, port, rows)
         asyncio.create_task(session.login(name))
 
 
